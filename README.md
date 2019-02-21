@@ -1,4 +1,4 @@
-# vanessa cms
+![logo](https://github.com/maxa11an/vanessa/raw/develop/docs/images/VanessaCMS.png)
 
 A reformed CMS system with PHP as base.
 Currently in really early stages.
