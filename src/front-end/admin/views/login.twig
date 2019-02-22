@@ -4,7 +4,16 @@
  #}
 {% extends "_main.twig" %}
 
-{% block content %}
-    {% include "_flash.twig" %}
-    <h1>{{ __("Login") }}</h1>
+{% block notAuthContent %}
+    <div class="w-100 text-center">
+        <form class="form-signin" method="post" action="{{ path_for('vanessa:login') }}">
+            <img class="mb-4" src="/assets/admin/images/VanessaCMS.portrait.svg" alt="" width="240" height="auto">
+            <label for="inputEmail" class="sr-only">{{ __("Username") }}</label>
+            <input value="administrator" type="text" name="username" id="inputEmail" class="form-control" placeholder="{{ __("Username") }}" required autofocus>
+            <label for="inputPassword" class="sr-only">{{ __("Password") }}</label>
+            <input value="administrator" type="password" name="password" id="inputPassword" class="form-control" placeholder="{{ __("Password") }}" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __("Sign in") }}</button>
+            <p class="mt-5 mb-3 text-muted">&copy; Vanessa CMS</p>
+        </form>
+    </div>
 {% endblock %}
