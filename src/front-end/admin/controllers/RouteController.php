@@ -13,7 +13,9 @@ use Slim\App as App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\TwigExtension;
+use Vanessa\Admin\controllers\auth\StartController;
 use Vanessa\Twig\Extension\__;
+use Vanessa\Twig\Extension\User;
 use Vanessa\VanessaException;
 
 /**
@@ -46,12 +48,21 @@ class RouteController
 	 */
 	private function __registerRoutes()
 	{
-		//Redirect to login when accessing root
-		$this->app->any("/vanessa", function (Request $request, Response $response) {
-			return $response->withRedirect($this->router->pathFor("vanessa:login"));
-		})->setName('vanessa');
+		$this->app->group('/vanessa', function(App $app){
+			//Auth related endpoints
+			$app->map(["GET", "POST"], "/login", LoginController::class . ':login')->setName('vanessa:login');
+			$app->get("/logout", LoginController::class . ':logout')->setName("vanessa:logout");
 
-		$this->app->map(["GET", "POST"], "/vanessa/login", AuthController::class . ':login')->setName('vanessa:login');
+			$app->group('/auth', function(App $app){
+				$app->get('/start', StartController::class.':start')->setName("vanessa:start");
+			});
+		});
+		/*$this->app->any("/vanessa", function (Request $request, Response $response) {
+			return $response->withRedirect($this->router->pathFor("vanessa:login"));
+		})->setName('vanessa');*/
+
+
+
 
 	}
 
@@ -71,6 +82,7 @@ class RouteController
 			$uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
 			$view->addExtension(new TwigExtension($router, $uri));
 			$view->addExtension(new __());
+			$view->addExtension(new User());
 
 			$view->addExtension(new TwigMessages(
 				new \Slim\Flash\Messages()

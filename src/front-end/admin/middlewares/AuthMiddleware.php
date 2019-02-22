@@ -22,7 +22,7 @@ class AuthMiddleware
 			$uri = $request->getUri();
 			$path = $uri->getPath();
 			if(strpos($path, "/vanessa/auth") === 0){
-				if (!User::isAuth()) {
+				if (!User::isAuthed()) {
 					return $response->withRedirect('/vanessa/login')->withStatus(301);
 				}
 			}

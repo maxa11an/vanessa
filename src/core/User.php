@@ -23,6 +23,12 @@ class User
 		$this->user = $user;
 	}
 
+	public final function getArray(): array {
+		return [
+			"username" => $this->user['username']
+		];
+	}
+
 	/**
 	 * @param string $username
 	 * @param string $password
@@ -32,17 +38,18 @@ class User
 	public static function login(string $username, string $password): bool
 	{
 		$userStorage = NoSQL::open('users');
-		$user = $userStorage->where("username", "=", strtolower($username))->fetch();
+		$user = $userStorage->where("username", "=", strtolower($username))->fetch()[0];
+
 
 		if ($user == NULL) {
 			throw new VanessaException(new __("Couldn't match user nor password."));
 		}
 
 		if (password_verify($password, $user['password']) === FALSE) {
-			throw new VanessaException(new __("Couldn't match user nor password."));
+			throw new VanessaException(new __("Couldn't match password."));
 		}
 
-		$_SESSION[self::SESSION_NAME] = new User($user);
+		$_SESSION[self::SESSION_NAME] = (new User($user))->getArray();
 
 		$userStorage = NULL;
 		return TRUE;
@@ -66,12 +73,16 @@ class User
 		return TRUE;
 	}
 
-	public static function getLoggedInUser() :User
+	public static function getLoggedInUser()
 	{
-		return $_SESSION[self::SESSION_NAME];
+		return @$_SESSION[self::SESSION_NAME] ?: null;
 	}
 
-	public static function isAuth(): bool {
-		return isset($_SESSION[self::SESSION_NAME]) && $_SESSION[self::SESSION_NAME] instanceof User;
+	public static function logout(){
+		unset($_SESSION[self::SESSION_NAME]);
+	}
+
+	public static function isAuthed(): bool {
+		return self::getLoggedInUser() !== null;
 	}
 }
