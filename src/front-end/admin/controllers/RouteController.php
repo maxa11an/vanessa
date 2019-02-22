@@ -12,6 +12,7 @@ use Slim\App as App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\TwigExtension;
+use Vanessa\Twig\Extension\__;
 
 class RouteController
 {
@@ -45,6 +46,7 @@ class RouteController
 			$router = $container->get('router');
 			$uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
 			$view->addExtension( new TwigExtension($router, $uri));
+			$view->addExtension( new __());
 
 			return $view;
 		};
