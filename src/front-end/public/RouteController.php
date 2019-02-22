@@ -11,7 +11,7 @@ class RouteController
 {
 	public function __construct(\Slim\App $app)
 	{
-		$app->get("/[{page:!vanessa/.*?}]", function(\Slim\Http\Request $request, \Slim\Http\Response $response){
+		$app->get("/[{page:!vanessa}]", function(\Slim\Http\Request $request, \Slim\Http\Response $response){
 			$page = $request->getAttribute("page");
 			if($page == ""){
 				$page = "/";
