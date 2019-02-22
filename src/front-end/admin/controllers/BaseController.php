@@ -12,6 +12,12 @@ namespace Vanessa\Admin\controllers;
 use Psr\Container\ContainerInterface;
 use Slim\Views\Twig;
 
+/**
+ * Class BaseController
+ * All admin controllers need to have this as parent.
+ * @package Vanessa\Admin\controllers
+ * @author Max Allan Niklasson
+ */
 class BaseController
 {
 	private $container;

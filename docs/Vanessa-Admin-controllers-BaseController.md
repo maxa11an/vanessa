@@ -1,7 +1,8 @@
 Vanessa\Admin\controllers\BaseController
 ===============
 
-
+Class BaseController
+All admin controllers need to have this as parent.
 
 
 

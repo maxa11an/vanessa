@@ -1,22 +1,32 @@
 <?php
-
-namespace Vanessa\Admin\controllers;
 /**
  * Created by PhpStorm.
  * User: maxallan
  * Date: 2019-02-21
  * Time: 21:37
  */
-
+namespace Vanessa\Admin\controllers;
 use Slim\App as App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\TwigExtension;
 use Vanessa\Twig\Extension\__;
 
+/**
+ * Class RouteController
+ * Register routes for admin panel and includes Twig since we use this as template engine.
+ *
+ * @package Vanessa\Admin\controllers
+ * @author Max Allan Niklasson
+ */
 class RouteController
 {
 	private $app;
+
+	/**
+	 * RouteController constructor.
+	 * @param App $app
+	 */
 	public function __construct(App $app)
 	{
 		$this->app = $app;
@@ -25,6 +35,9 @@ class RouteController
 
 	}
 
+	/**
+	 * Register routes
+	 */
 	private function __registerRoutes(){
 		//Redirect to login when accessing root
 		$this->app->any("/vanessa", function(Request $request, Response $response) {
@@ -35,6 +48,9 @@ class RouteController
 
 	}
 
+	/**
+	 * Register twig
+	 */
 	private function __registerTwig(){
 		$container = $this->app->getContainer();
 

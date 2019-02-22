@@ -1,7 +1,8 @@
 Vanessa\Admin\controllers\RouteController
 ===============
 
-
+Class RouteController
+Register routes for admin panel and includes Twig since we use this as template engine.
 
 
 
@@ -36,7 +37,7 @@ Methods
 
     mixed Vanessa\Admin\controllers\RouteController::__construct(\Slim\App $app)
 
-
+RouteController constructor.
 
 
 
@@ -52,7 +53,7 @@ Methods
 
     mixed Vanessa\Admin\controllers\RouteController::__registerRoutes()
 
-
+Register routes
 
 
 
@@ -65,7 +66,7 @@ Methods
 
     mixed Vanessa\Admin\controllers\RouteController::__registerTwig()
 
-
+Register twig
 
 
 
