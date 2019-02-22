@@ -1,0 +1,38 @@
+{
+  "name": "vanessa",
+  "version": "1.0.0",
+  "description": "![logo](https://github.com/maxa11an/vanessa/raw/master/docs/images/VanessaCMS.png)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "admin": "grunt --gruntfile Gruntfile.admin.js adminDev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://maxa11an@github.com/maxa11an/vanessa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxa11an/vanessa/issues"
+  },
+  "homepage": "https://github.com/maxa11an/vanessa#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-cli": "^1.3.2",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-jshint": "^2.0.0",
+    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-sass": "^3.0.2",
+    "node-sass": "^4.11.0"
+  }
+}
