@@ -9,14 +9,14 @@
 namespace Vanessa\Twig\Extension;
 
 
-use Twig\TwigFunction;
+
 
 class __ extends \Twig_Extension
 {
 	public function getFunctions()
 	{
 		return [
-			new TwigFunction('__', [$this, 'translate']),
+			new \Twig_Function('__', [$this, 'translate']),
 		];
 	}
 
