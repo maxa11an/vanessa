@@ -48,11 +48,10 @@ namespace Vanessa\Admin\controllers' . ($opts['path'] !== "" ? "\\" . str_replac
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class ' . ucfirst($opts['name']) . 'Controller extends BaseController
+class ' . ucfirst($opts['name']) . 'Controller extends \Vanessa\Admin\controllers\BaseController
 {
 
-	public
-	function login(Request $request, Response $response, array $args)
+	public function '.$opts['name'].'(Request $request, Response $response, array $args)
 	{
 		return $this->view()->render($response, "' . ($opts['path'] !== "" ? $opts['path'] . '/' : "").$opts['name'] . '.twig");
 	}
