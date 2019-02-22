@@ -22,7 +22,7 @@ $c = new \Slim\Container($configuration);
 
 $app = new \Slim\App($c);
 
-new \Vanessa\Admin\RouteController($app);
+new \Vanessa\Admin\controllers\RouteController($app);
 
 new \Vanessa\Publik\RouteController($app);
 
