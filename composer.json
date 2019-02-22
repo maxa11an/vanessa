@@ -4,7 +4,8 @@
     "type": "library",
     "require": {
         "slim/slim": "^3.12",
-        "rakibtg/sleekdb": "^1.0"
+        "rakibtg/sleekdb": "^1.0",
+        "slim/twig-view": "^2.4"
     },
     "authors": [
         {
@@ -21,6 +22,7 @@
     },
     "scripts": {
       "setup": "php src/.bin/install.php",
-      "start": "php -S localhost:8080 -t public_html public_html/index.php"
+      "start": "php -S localhost:8080 -t public_html public_html/index.php",
+      "generateController": "php src/.bin/createVanessaControllerSet.php"
     }
 }
