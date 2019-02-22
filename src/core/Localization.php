@@ -40,25 +40,18 @@ class Localization
 
 	}
 
-	public static function generateTranslationsFiles(){
+	public static function generateTranslationFiles(){
+		$directories = ["./src/front-end/admin", "./src/core"];
 
-		$it = new \RecursiveDirectoryIterator("./src/front-end/admin");
-		foreach(new \RecursiveIteratorIterator($it) as $file) {
-			if ($file->getExtension() == 'twig' || $file->getExtension() == "php") {
-				$keys = self::extractTranslations($file);
-				if(count($keys) > 0){
-					self::updateTranslationFile($file, $keys);
+		foreach($directories as $directory){
+			$it = new \RecursiveDirectoryIterator($directory);
+			foreach(new \RecursiveIteratorIterator($it) as $file) {
+				if ($file->getExtension() == 'twig' || $file->getExtension() == "php") {
+					$keys = self::extractTranslations($file);
+					if(count($keys) > 0){
+						self::updateTranslationFile($file, $keys);
+					}
 				}
-			}
-		}
-		$it = new \RecursiveDirectoryIterator("./src/core");
-		foreach(new \RecursiveIteratorIterator($it) as $file) {
-			if ($file->getExtension() == 'twig' || $file->getExtension() == "php") {
-				$keys = self::extractTranslations($file);
-				if(count($keys) > 0){
-					self::updateTranslationFile($file, $keys);
-				}
-
 			}
 		}
 	}
