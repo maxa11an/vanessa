@@ -34,6 +34,9 @@
 
     "composerDev": "php -S localhost:8080 -t public_html public_html/index.php --timeout=0",
     "npmDev": "npm run admin",
-    "adminDev": "npm run admin & php -S localhost:8080 -t public_html public_html/index.php --timeout=0 &"
+    "adminDev": "npm run admin & php -S 127.0.0.1:8080 -t public_html public_html/index.php &"
+  },
+  "config": {
+    "process-timeout": 0
   }
 }
