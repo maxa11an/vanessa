@@ -41,6 +41,17 @@ Properties
 * Visibility: **private**
 
 
+### $flash
+
+    private mixed $flash
+
+
+
+
+
+* Visibility: **private**
+
+
 Methods
 -------
 
@@ -83,6 +94,20 @@ Methods
 ### view
 
     mixed Vanessa\Admin\controllers\BaseController::view()
+
+
+
+
+
+* Visibility: **protected**
+* This method is defined by [Vanessa\Admin\controllers\BaseController](Vanessa-Admin-controllers-BaseController.md)
+
+
+
+
+### flash
+
+    mixed Vanessa\Admin\controllers\BaseController::flash()
 
 
 

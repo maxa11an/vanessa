@@ -50,6 +50,17 @@ Properties
 * Visibility: **private**
 
 
+### $file
+
+    private mixed $file = null
+
+
+
+
+
+* Visibility: **private**
+
+
 Methods
 -------
 

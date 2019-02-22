@@ -48,3 +48,16 @@ Methods
 * $args **mixed**
 
 
+
+### updateFile
+
+    mixed Vanessa\Twig\Extension\__::updateFile()
+
+
+
+
+
+* Visibility: **private**
+
+
+

@@ -40,6 +40,17 @@ Properties
 * Visibility: **private**
 
 
+### $flash
+
+    private mixed $flash
+
+
+
+
+
+* Visibility: **private**
+
+
 Methods
 -------
 
@@ -63,6 +74,19 @@ Methods
 ### view
 
     mixed Vanessa\Admin\controllers\BaseController::view()
+
+
+
+
+
+* Visibility: **protected**
+
+
+
+
+### flash
+
+    mixed Vanessa\Admin\controllers\BaseController::flash()
 
 
 
