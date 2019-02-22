@@ -18,12 +18,15 @@ class __
 	private $keyPlural = null;
 	private $args = [];
 
+	private $file = null;
+
 	/**
 	 * __ constructor.
 	 * @param mixed ...$options Supports three different ways of printing data: __("Normal") => "Normal", __("Normal %s", ["String"] ) => "Normal String", __("Singular %d", "Plural %d", [2]) => "Plural 2"
 	 */
 	public function __construct(... $options)
 	{
+		$this->file = defined('__TWIG_FILE__') ? __TWIG_FILE__ : basename(debug_backtrace()[0]['file']);
 		//if nested somehow
 		if(count($options) === 1 && is_array($options[0])){
 			$options = $options[0];
@@ -46,12 +49,12 @@ class __
 	{
 		//check for both plural and singular and make sure there only is one arguments to replace with
 		if($this->keySingular !== null && $this->keyPlural !== null && count($this->args) === 1){
-			return (string) call_user_func_array('sprintf', array_merge([($this->args[0] == "1" ? $this->keySingular : $this->keyPlural)], $this->args));
+			return (string) call_user_func_array('sprintf', array_merge([($this->args[0] == "1" ? Localization::getKey($this->file, $this->keySingular) : Localization::getKey($this->file, $this->keyPlural))], $this->args));
 		}
 		if(count($this->args) > 0){
-			return (string) call_user_func_array('sprintf', array_merge([$this->keySingular], $this->args));
+			return (string) call_user_func_array('sprintf', array_merge([Localization::getKey($this->file, $this->keySingular)], $this->args));
 		}
-		return $this->keySingular;
+		return Localization::getKey($this->file, $this->keySingular);
 	}
 
 }

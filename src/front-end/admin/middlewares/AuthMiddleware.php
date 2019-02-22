@@ -6,7 +6,7 @@
  * Time: 22:35
  */
 
-namespace Vanessa\Admin;
+namespace Vanessa\Admin\middlewares;
 
 
 use Slim\App;

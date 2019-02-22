@@ -10,6 +10,7 @@ namespace Vanessa\Admin\controllers;
 
 
 use Psr\Container\ContainerInterface;
+use Slim\Flash\Messages;
 use Slim\Views\Twig;
 
 /**
@@ -22,14 +23,20 @@ class BaseController
 {
 	private $container;
 	private $view;
+	private $flash;
 	// constructor receives container instance
 	public function __construct(ContainerInterface $container) {
 		$this->container = $container;
 		$this->view = $container->get('view');
+		$this->flash = $container->get('flash');
 	}
 
 	protected final function view(): Twig {
 		return $this->view;
+	}
+
+	protected final function flash(): Messages {
+		return $this->flash;
 	}
 
 	protected final function container(): ContainerInterface {

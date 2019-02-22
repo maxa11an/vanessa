@@ -5,12 +5,16 @@
  * Date: 2019-02-21
  * Time: 21:37
  */
+
 namespace Vanessa\Admin\controllers;
+
+use Knlv\Slim\Views\TwigMessages;
 use Slim\App as App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\TwigExtension;
 use Vanessa\Twig\Extension\__;
+use Vanessa\VanessaException;
 
 /**
  * Class RouteController
@@ -30,42 +34,53 @@ class RouteController
 	public function __construct(App $app)
 	{
 		$this->app = $app;
-		$this->__registerRoutes();
+
 		$this->__registerTwig();
+		$this->__registerRoutes();
+
 
 	}
 
 	/**
 	 * Register routes
 	 */
-	private function __registerRoutes(){
+	private function __registerRoutes()
+	{
 		//Redirect to login when accessing root
-		$this->app->any("/vanessa", function(Request $request, Response $response) {
+		$this->app->any("/vanessa", function (Request $request, Response $response) {
 			return $response->withRedirect($this->router->pathFor("vanessa:login"));
 		})->setName('vanessa');
 
-		$this->app->map(["GET", "POST"], "/vanessa/login", AuthController::class.':login')->setName('vanessa:login');
+		$this->app->map(["GET", "POST"], "/vanessa/login", AuthController::class . ':login')->setName('vanessa:login');
 
 	}
 
 	/**
 	 * Register twig
 	 */
-	private function __registerTwig(){
+	private function __registerTwig()
+	{
 		$container = $this->app->getContainer();
 
 		$container['view'] = function ($container) {
-			$view = new \Slim\Views\Twig(__DIR__.'/../views', [
+			$view = new \Slim\Views\Twig(__DIR__ . '/../views', [
 
 			]);
 			// Instantiate and add Slim specific extension
 			$router = $container->get('router');
 			$uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
-			$view->addExtension( new TwigExtension($router, $uri));
-			$view->addExtension( new __());
+			$view->addExtension(new TwigExtension($router, $uri));
+			$view->addExtension(new __());
+
+			$view->addExtension(new TwigMessages(
+				new \Slim\Flash\Messages()
+			));
 
 			return $view;
 		};
-	}
 
+		$container['flash'] = function () {
+			return new \Slim\Flash\Messages();
+		};
+	}
 }
