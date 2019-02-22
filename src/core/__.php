@@ -26,7 +26,7 @@ class __
 	 */
 	public function __construct(... $options)
 	{
-		$this->file = defined('__TWIG_FILE__') ? __TWIG_FILE__ : basename(debug_backtrace()[0]['file']);
+		$this->file = isset($GLOBALS['TWIG_FILE']) ? $GLOBALS['TWIG_FILE'] : basename(debug_backtrace()[0]['file']);
 		//if nested somehow
 		if(count($options) === 1 && is_array($options[0])){
 			$options = $options[0];

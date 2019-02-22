@@ -30,7 +30,7 @@ class __ extends \Twig_Extension
 				&& (strpos($trace['class'], 'TwigTemplate') !== false)
 				&& 'Twig_Template' !== get_class($trace['object'])
 			) {
-				define('__TWIG_FILE__', $trace['object']->getTemplateName());
+				$GLOBALS['TWIG_FILE'] = $trace['object']->getTemplateName();
 				break;
 			}
 		}
