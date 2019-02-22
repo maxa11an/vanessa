@@ -28,8 +28,12 @@
   },
   "scripts": {
     "setup": "php src/.bin/install.php",
-    "start": "php -S localhost:8080 -t public_html public_html/index.php",
     "documentation": "phpdoc  -d src -t .docs/ --template='xml' && phpdocmd .docs/structure.xml docs/",
-    "generateController": "php src/.bin/createVanessaControllerSet.php"
+    "generateController": "php src/.bin/createVanessaControllerSet.php",
+
+
+    "composerDev": "php -S localhost:8080 -t public_html public_html/index.php --timeout=0",
+    "npmDev": "npm run admin",
+    "adminDev": "npm run admin & php -S localhost:8080 -t public_html public_html/index.php --timeout=0 &"
   }
 }
