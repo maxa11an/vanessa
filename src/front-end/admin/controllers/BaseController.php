@@ -11,6 +11,7 @@ namespace Vanessa\Admin\controllers;
 
 use Psr\Container\ContainerInterface;
 use Slim\Flash\Messages;
+use Slim\Router;
 use Slim\Views\Twig;
 
 /**
@@ -41,6 +42,10 @@ class BaseController
 
 	protected final function container(): ContainerInterface {
 		return $this->container;
+	}
+
+	protected final function router(): Router {
+		return $this->container->router;
 	}
 
 }
