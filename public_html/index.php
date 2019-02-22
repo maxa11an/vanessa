@@ -1,6 +1,9 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+session_start();
+
 /**
  * Created by PhpStorm.
  * User: maxallan
@@ -22,11 +25,12 @@ $c = new \Slim\Container($configuration);
 
 $app = new \Slim\App($c);
 
-new \Vanessa\Admin\RouteController($app);
+
+new \Vanessa\Admin\controllers\RouteController($app);
 
 new \Vanessa\Publik\RouteController($app);
 
-new \Vanessa\Admin\AuthMiddleware($app);
+new \Vanessa\Admin\middlewares\AuthMiddleware($app);
 
 $app->add(function(\Slim\Http\Request $request, \Slim\Http\Response $response, callable $next){
 	$uri = $request->getUri();

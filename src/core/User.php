@@ -34,12 +34,12 @@ class User
 		$userStorage = NoSQL::open('users');
 		$user = $userStorage->where("username", "=", strtolower($username))->fetch();
 
-		if ($user === NULL) {
-			throw new Exception(new __("Couldn't match user nor password."));
+		if ($user == NULL) {
+			throw new VanessaException(new __("Couldn't match user nor password."));
 		}
 
 		if (password_verify($password, $user['password']) === FALSE) {
-			throw new Exception(new __("Couldn't match user nor password."));
+			throw new VanessaException(new __("Couldn't match user nor password."));
 		}
 
 		$_SESSION[self::SESSION_NAME] = new User($user);
@@ -53,7 +53,7 @@ class User
 		$userStorage = NoSQL::open('users');
 
 		if(count($userStorage->where("username", "=", strtolower($username))->fetch()) > 0){
-			throw new Exception(new __("Username is already in use"));
+			throw new VanessaException(new __("Username is already in use"));
 		}
 
 		$userStorage->insert([

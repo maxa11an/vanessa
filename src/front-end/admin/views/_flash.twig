@@ -1,0 +1,5 @@
+<ul class="alert alert-danger">
+    {% for msg in flash('error') %}
+        <li>{{ msg }}</li>
+    {% endfor %}
+</ul>

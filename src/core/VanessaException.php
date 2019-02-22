@@ -9,7 +9,7 @@
 namespace Vanessa;
 
 
-class Exception extends \Exception
+class VanessaException extends \Exception
 {
 
 }
