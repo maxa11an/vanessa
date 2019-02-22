@@ -1,5 +1,14 @@
-<ul class="alert alert-danger">
-    {% for msg in flash('error') %}
-        <li>{{ msg }}</li>
-    {% endfor %}
-</ul>
+{% for msg in flash('error') %}
+    $.notify({
+        message: "{{ msg }}"
+    },{
+        type: 'danger'
+    });
+{% endfor %}
+{% for msg in flash('success') %}
+    $.notify({
+    message: "{{ msg }}"
+    },{
+    type: 'success'
+    });
+{% endfor %}
