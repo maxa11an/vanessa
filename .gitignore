@@ -1,5 +1,4 @@
 /vendor/
 /.vanessa/
-
 /public_html/*
 !/public_html/vanessa
