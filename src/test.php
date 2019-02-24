@@ -8,9 +8,9 @@
 
 include __DIR__.'/../vendor/autoload.php';
 
-$_ENV['VANESSA_SECRET'] = "agfkalgfamkldsagfjagfoakglfakl";
+(new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__.'/../.vanessa/.env');
 
-$settings = \Vanessa\StorageFileHandler::openSecuredStorage(\Vanessa\StorageFileHandler::SECURED_FILE_SETTINGS);
+$settings = \Vanessa\StorageFileHandler::openSecuredStorage(\Vanessa\StorageFileHandler::SECURED_FILE_USERS);
 
 /*$settings->addNewWithPrimaryKey("administrator", [
 	"password" => "lol"

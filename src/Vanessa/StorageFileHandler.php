@@ -22,9 +22,6 @@ class StorageFileHandler
 		if(!file_exists(self::DIR_SECURED.$filename)) file_put_contents(self::DIR_SECURED.$filename, "");
 
 		return new YamlSQL(self::DIR_SECURED.$filename, true);
-
-
-
 	}
 
 }
