@@ -1,0 +1,42 @@
+{
+  "name": "maxallan/vanessa",
+  "description": "A smarter static webpage generator",
+  "type": "library",
+  "require": {
+    "slim/slim": "^3.12",
+    "rakibtg/sleekdb": "^1.0",
+    "slim/twig-view": "^2.4",
+    "slim/flash": "^0.4.0",
+    "kanellov/slim-twig-flash": "^0.2.0",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "evert/phpdoc-md": "~0.2.0"
+  },
+  "authors": [
+    {
+      "name": "Max Allan Niklasson",
+      "email": "hello@maxallan.se"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Vanessa\\": "src/core",
+      "Vanessa\\Admin\\": "src/front-end/admin",
+      "Vanessa\\Publik\\": "src/front-end/public"
+    }
+  },
+  "scripts": {
+    "setup": "php src/.bin/install.php",
+    "documentation": "phpdoc  -d src -t .docs/ --template='xml' && phpdocmd .docs/structure.xml docs/",
+    "generateController": "php src/.bin/createVanessaControllerSet.php",
+
+
+    "composerDev": "php -S localhost:8080 -t public_html public_html/index.php --timeout=0",
+    "npmDev": "npm run admin",
+    "adminDev": "npm run admin & php -S 127.0.0.1:8080 -t public_html public_html/index.php &"
+  },
+  "config": {
+    "process-timeout": 0
+  }
+}

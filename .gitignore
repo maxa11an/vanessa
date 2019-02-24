@@ -1,6 +1,5 @@
-vendor
-.pages
-.storage
-.docs
-node_modules
-public_html/assets
+/vendor/
+/.vanessa/
+
+/public_html/*
+!/public_html/vanessa
