@@ -7,6 +7,7 @@
  */
 
 namespace Vanessa\Middlewares;
+use Psr\Container\ContainerInterface;
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -14,17 +15,19 @@ use Slim\Http\Response;
 
 class AuthMiddleware
 {
-	public function __construct(App $app)
+	public function __construct(ContainerInterface $container)
 	{
-		$app->add(function(Request $request, Response $response, callable $next){
-			$uri = $request->getUri();
-			$path = $uri->getPath();
-			if(strpos($path, "/auth") === 0){
-				if (!\Vanessa\Core\User::isAuthed()) {
-					return $response->withRedirect('/login')->withStatus(301);
-				}
+
+	}
+	public function __invoke($request, $response, $next)
+	{
+		$uri = $request->getUri();
+		$path = $uri->getPath();
+		if(strpos($path, "/auth") === 0){
+			if (!\Vanessa\Core\User::isAuthed()) {
+				return $response->withRedirect('/login')->withStatus(301);
 			}
-			return $next($request, $response);
-		});
+		}
+		return $next($request, $response);
 	}
 }

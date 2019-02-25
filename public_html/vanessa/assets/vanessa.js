@@ -142,6 +142,18 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 
 /***/ }),
 
+/***/ "./src/Vanessa/Resources/js/Inputfields.js":
+/*!*************************************************!*\
+  !*** ./src/Vanessa/Resources/js/Inputfields.js ***!
+  \*************************************************/
+/*! exports provided: Inputfields */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Inputfields\", function() { return Inputfields; });\n/* harmony import */ var _Vanessa__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Vanessa */ \"./src/Vanessa/Resources/js/Vanessa.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nclass Inputfields {\n\tconstructor(){\n\t\tthis.fields = templateFields;\n\t\tthis.renderLoaded();\n\t}\n\n\trenderLoaded(){\n\t\tthis.fields.forEach(Inputfields.renderItem);\n\t}\n\n\tstatic renderItem(item){\n\t\tconsole.log(item);\n\t\tconst TYPE = `${_Vanessa__WEBPACK_IMPORTED_MODULE_0__[\"Vanessa\"].capitalize(item.type)}Inputfield`;\n\t\tconst element = jquery__WEBPACK_IMPORTED_MODULE_1___default()(`[data-type=\"${TYPE}\"]`).clone();\n\t\tjquery__WEBPACK_IMPORTED_MODULE_1___default()(element).find('label').text(item.name);\n\t\tjquery__WEBPACK_IMPORTED_MODULE_1___default()(element).find('input').val(item.default);\n\t\tjquery__WEBPACK_IMPORTED_MODULE_1___default()(element).appendTo(\"#Inputfields\");\n\t}\n}\n\n//# sourceURL=webpack:///./src/Vanessa/Resources/js/Inputfields.js?");
+
+/***/ }),
+
 /***/ "./src/Vanessa/Resources/js/Vanessa.js":
 /*!*********************************************!*\
   !*** ./src/Vanessa/Resources/js/Vanessa.js ***!
@@ -150,7 +162,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Vanessa\", function() { return Vanessa; });\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var bootstrap4_notify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap4-notify */ \"./node_modules/bootstrap4-notify/bootstrap-notify.js\");\n/* harmony import */ var bootstrap4_notify__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap4_notify__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\n/**\n * Vanessa Class\n */\nclass Vanessa {\n\tconstructor() {\n\t\tthis.flashes();\n\t}\n\n\tflashes(){\n\t\tObject.keys(slimFlashes).forEach((type) => {\n\t\t\tslimFlashes[type].forEach((flash) => {\n\t\t\t\tjquery__WEBPACK_IMPORTED_MODULE_0___default.a.notify({\n\t\t\t\t\tmessage: flash\n\t\t\t\t}, {\n\t\t\t\t\ttype: type,\n\t\t\t\t\tplacement: {\n\t\t\t\t\t\tfrom: \"bottom\",\n\t\t\t\t\t\talign: \"right\"\n\t\t\t\t\t},\n\t\t\t\t\tanimate: {\n\t\t\t\t\t\tenter: 'animated fadeInUp',\n\t\t\t\t\t\texit: 'animated fadeOutDown'\n\t\t\t\t\t}\n\t\t\t\t})\n\t\t\t})\n\t\t})\n\t}\n}\n\n//# sourceURL=webpack:///./src/Vanessa/Resources/js/Vanessa.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Vanessa\", function() { return Vanessa; });\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var bootstrap4_notify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap4-notify */ \"./node_modules/bootstrap4-notify/bootstrap-notify.js\");\n/* harmony import */ var bootstrap4_notify__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap4_notify__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\n/**\n * Vanessa Class\n */\nclass Vanessa {\n\tconstructor() {\n\t\tthis.flashes();\n\t}\n\n\tflashes(){\n\t\tObject.keys(slimFlashes).forEach((type) => {\n\t\t\tslimFlashes[type].forEach((flash) => {\n\t\t\t\tjquery__WEBPACK_IMPORTED_MODULE_0___default.a.notify({\n\t\t\t\t\tmessage: flash\n\t\t\t\t}, {\n\t\t\t\t\ttype: type,\n\t\t\t\t\tplacement: {\n\t\t\t\t\t\tfrom: \"bottom\",\n\t\t\t\t\t\talign: \"right\"\n\t\t\t\t\t},\n\t\t\t\t\tanimate: {\n\t\t\t\t\t\tenter: 'animated fadeInUp',\n\t\t\t\t\t\texit: 'animated fadeOutDown'\n\t\t\t\t\t}\n\t\t\t\t})\n\t\t\t})\n\t\t})\n\t}\n\n\tstatic capitalize(string) {\n\t\treturn string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();\n\t}\n\n}\n\n//# sourceURL=webpack:///./src/Vanessa/Resources/js/Vanessa.js?");
 
 /***/ }),
 
@@ -162,7 +174,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Vanessa__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Vanessa */ \"./src/Vanessa/Resources/js/Vanessa.js\");\n\n\n\nnew _Vanessa__WEBPACK_IMPORTED_MODULE_0__[\"Vanessa\"]();\n\n//# sourceURL=webpack:///./src/Vanessa/Resources/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Vanessa__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Vanessa */ \"./src/Vanessa/Resources/js/Vanessa.js\");\n/* harmony import */ var _Inputfields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Inputfields */ \"./src/Vanessa/Resources/js/Inputfields.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\n\nnew _Vanessa__WEBPACK_IMPORTED_MODULE_0__[\"Vanessa\"]();\n\nif(jquery__WEBPACK_IMPORTED_MODULE_2___default()(\"#Inputfields\").length > 0){\n\tnew _Inputfields__WEBPACK_IMPORTED_MODULE_1__[\"Inputfields\"]();\n}\n\n//# sourceURL=webpack:///./src/Vanessa/Resources/js/app.js?");
 
 /***/ }),
 

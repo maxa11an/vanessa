@@ -1,0 +1,11 @@
+.editor-header{
+  position: sticky;
+  top: 48px;
+  background: $white;
+}
+
+.editor-body{
+  .header{
+	background: rgba($primary, 0.5);
+  }
+}

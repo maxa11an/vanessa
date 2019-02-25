@@ -1,7 +1,44 @@
 
 @import "./node_modules/bootstrap/scss/bootstrap";
 @import "./node_modules/animate.css/animate";
+@import "./node_modules/linearicons/dist/web-font/style";
+@import "vanessa-bootstrap";
 
+
+@import "list-group";
+@import "editor";
+@import "inputfields";
+
+.clickable{
+  cursor: pointer;
+  &.disabled{
+	cursor: not-allowed;
+  }
+}
+
+.form-group, .form-row{
+  margin-bottom: 0px;
+  label{
+	margin-bottom: 0px;
+	text-transform: uppercase;
+	font-size: $font-size-sm * 0.875;
+	font-weight: $font-weight-bolder;
+  }
+  .form-control[type='text']{
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-bottom: 1px solid rgba($primary, 0.8);
+	border-radius: 0px;
+	background: transparent;
+	&:active, &:focus{
+	  -webkit-box-shadow: none !important;
+	  -moz-box-shadow: none !important;
+	  box-shadow: none !important;
+	  border-bottom: 1px solid $primary;
+	}
+  }
+}
 
 .sidebar {
   position: fixed;
@@ -12,7 +49,8 @@
   /* Behind the navbar */
   padding: 48px 0 0;
   /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1); }
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
 
 .sidebar-sticky {
   position: relative;
@@ -82,3 +120,8 @@
 .form-control-dark:focus {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25); }
+
+
+.editor-header{
+  height: 4rem;
+}

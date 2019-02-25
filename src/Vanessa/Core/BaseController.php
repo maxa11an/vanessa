@@ -1,5 +1,7 @@
 <?php
 namespace Vanessa\Core;
+use Vanessa\Core\Slim\Arguments;
+
 /**
  * Created by PhpStorm.
  * User: maxallan
@@ -17,6 +19,7 @@ namespace Vanessa\Core;
 class BaseController
 {
 	private $container;
+	private $args;
 	// constructor receives container instance
 	public function __construct(\Psr\Container\ContainerInterface $container) {
 		$this->container = $container;
@@ -44,6 +47,10 @@ class BaseController
 
 	protected final function response():  \Slim\Http\Response {
 		return $this->container->get('response');
+	}
+
+	protected final function arguments(): Arguments {
+		return $this->container->get('arguments');
 	}
 
 }

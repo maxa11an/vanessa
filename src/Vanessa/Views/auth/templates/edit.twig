@@ -1,0 +1,85 @@
+{% extends "auth/_editor.twig" %}
+{% set title = __("Edit template") %}
+{% set leftEditorTitle = title %}
+{% block leftEditor %}
+    <form>
+        <div class="h-25 header text-light p-n4">
+            <div class="p-4">
+                <div class="form-row">
+                    <div class="col-8">
+                        <label>{{ __("Template name") }}</label>
+                        <input class="form-control" type="text" value="{{ template.name }}" autocomplete="off" name="template[name]"/>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-end">
+                        <div class="form-check">
+                            <input class="form-check-input" name="template[has_body]" type="checkbox" value=""
+                                   id="hasBody">
+                            <label class="form-check-label" for="defaultCheck1">
+                                {{ __("Hide body") }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Inputfields" class="inputfield-list mt-4 pt-4"></div>
+    </form>
+{% endblock %}
+
+{% block leftEditorAction %}
+    <a href="{{ path_for("vanessa:template:add") }}" class="btn btn-xs btn-success">{{ __("Save template") }}</a>
+{% endblock %}
+
+{% set rightEditorTitle = __("Field editor") %}
+{% block rightEditor %}
+    <div class="row ">
+        {% for field in fieldsOptions %}
+            <div class="col-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body text-center d-flex flex-column align-items-start">
+                        <div class="mb-auto w-100">
+                            <h6 class="mb-0">{{ field.title }}</h6>
+                        </div>
+                        <div class="my-auto w-100 py-3">
+                            <img class="d-block mx-auto" src="{{ field.icon }}"/>
+                        </div>
+                        <div class="mt-auto w-100">
+                            <a href="#" class="w-100 btn btn-sm btn-light">{{ __("Add") }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block hiddenContent %}
+    <div id="InputfieldTypes" >
+        {% for field in fieldList %}
+            <div class="item d-flex " data-type="{{ field.info.Inputfield }}">
+                <div class="d-flex flex-column h-75 align-self-center">
+                    <div class="mb-auto clickable">
+                        <span class="lnr lnr-chevron-up"></span>
+                    </div>
+                    <div class="mt-auto clickable">
+                        <span class="lnr lnr-chevron-down"></span>
+                    </div>
+                </div>
+                <div class="flex-grow-1 px-3 d-flex align-items-center ">
+                    {{ field.html|raw }}
+                </div>
+                <div class="d-flex flex-column h-75 align-self-center">
+                    <div class="mb-auto clickable">
+                        <span class="lnr lnr-cog"></span>
+                    </div>
+                    <div class="mt-auto clickable">
+                        <span class="lnr lnr-trash"></span>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    <script>
+        var templateFields = {{ template.fields|json_encode|raw }};
+    </script>
+{% endblock %}

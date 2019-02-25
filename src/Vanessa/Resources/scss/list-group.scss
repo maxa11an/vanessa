@@ -1,0 +1,23 @@
+.list-items{
+  .header{
+	min-height: 4rem;
+  }
+  .item{
+	height: 4rem;
+	transition: $transition-base;
+	[class*='col-']{
+	  height: 4rem;
+	}
+	&:hover{
+	  background: lighten($primary, 45%);
+	  a {
+	  	color: $primary !important;
+	  }
+	}
+	a, a:hover{
+	  text-decoration: none;
+	  color: rgba($primary, 0.7);
+	  transition: $transition-base;
+	}
+  }
+}

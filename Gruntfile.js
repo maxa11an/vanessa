@@ -36,18 +36,26 @@ module.exports = function (grunt) {
 					src: [
 						'**/*',
 					]
+				},{
+					expand: true,
+					dot: true,
+					cwd: 'node_modules/linearicons/dist/web-font/fonts/',
+					dest: 'public_html/vanessa/assets/fonts/',
+					src: [
+						'**/*',
+					]
 				}]
 			}
 		},
-		exec:{
+		exec: {
 			php: "composer dump-autoload"
 		},
 		watch: {
-			sass:{
+			sass: {
 				files: ['src/Vanessa/Resources/scss/*.scss'],
 				tasks: ['sass', 'cssmin']
 			},
-			assets:{
+			assets: {
 				files: ['src/Vanessa/Resources/**/*'],
 				tasks: ['copy']
 			},

@@ -3,6 +3,8 @@ LoginController.php:
 _main.twig:
     - 'Sign out'
     - Dashboard
+    - Settings
+    - Templates
 login.twig:
     - Username
     - Password
@@ -12,3 +14,17 @@ User.php:
     - 'Couldn''t match password.'
 start.twig:
     - Start
+edit.twig:
+    - 'Edit template'
+    - Template
+    - Action
+    - Delete
+    - 'Add template'
+    - 'Field editor'
+list.twig:
+    - 'Add template'
+    - Template
+    - Action
+    - Delete
+TextInputfield.php:
+    - 'Text Field'
