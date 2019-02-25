@@ -61,7 +61,8 @@ class User
 		$userStorage = new YamlSQL("users.yml", true);
 		$userStorage->add($username, [
 			"password" => password_hash($password, PASSWORD_BCRYPT),
-			"role" => $role
+			"role" => $role,
+			"username" => $username
 		]);
 
 		$userStorage = NULL;
