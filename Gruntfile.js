@@ -54,7 +54,9 @@ module.exports = function (grunt) {
 			php: {
 				files: ['src/Vanessa/**/*.php'],
 				tasks: ['exec:php'],
-				options: ['added', 'deleted']
+				options: {
+					event: ['added', 'deleted']
+				}
 			}
 		}
 	});

@@ -1,0 +1,12 @@
+LoginController.php:
+    - 'Logged in successfully'
+_main.twig:
+    - 'Sign out'
+    - Dashboard
+login.twig:
+    - Username
+    - Password
+    - 'Sign in'
+User.php:
+    - 'Couldn''t match user nor password.'
+    - 'Couldn''t match password.'

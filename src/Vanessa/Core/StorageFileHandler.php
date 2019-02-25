@@ -12,16 +12,22 @@ namespace Vanessa\Core;
 class StorageFileHandler
 {
 	const DIR_SECURED = __DIR__.'/../../../.vanessa/';
-
-	const SECURED_FILE_SETTINGS = 'settings.yml';
 	const SECURED_FILE_USERS = 'users.yml';
+
+	const DIR_SITE = __DIR__.'/../../../site/.vanessa/';
 
 
 	public static function openSecuredStorage(string $filename): YamlSQL{
 
-		if(!file_exists(self::DIR_SECURED.$filename)) file_put_contents(self::DIR_SECURED.$filename, "");
 
-		return new YamlSQL(self::DIR_SECURED.$filename, true);
+		return new YamlSQL($filename, true);
+	}
+
+	public static function openSiteStorage(string $filename): YamlSQL{
+
+		if(!file_exists(self::DIR_SITE.$filename)) file_put_contents(self::DIR_SITE.$filename, "");
+
+		return new YamlSQL(self::DIR_SITE.$filename, false);
 	}
 
 }

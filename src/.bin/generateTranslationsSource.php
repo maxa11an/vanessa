@@ -6,7 +6,7 @@
  * Time: 12:15
  */
 include __DIR__.'/../../vendor/autoload.php';
-define('STORAGE_LOCATION', __DIR__ . "/../VanessaLocalization/.src/");
+define('STORAGE_LOCATION', __DIR__ . "/../VanessaLocalization/");
 
 $directories = [__DIR__ . '/../Vanessa'];
 
@@ -14,7 +14,7 @@ foreach ($directories as $directory) {
 	$it = new \RecursiveDirectoryIterator($directory);
 	foreach (new \RecursiveIteratorIterator($it) as $file) {
 		if ($file->getExtension() == 'twig' || $file->getExtension() == "php") {
-			$keys = extractTranslations($file);
+			$keys = array_map(function($v){ return stripslashes($v);}, array_values(array_unique(extractTranslations($file))));
 			if (count($keys) > 0) {
 				updateTranslationFile($file, $keys);
 			}
@@ -24,25 +24,23 @@ foreach ($directories as $directory) {
 
 function updateTranslationFile(\SplFileInfo $file, $keys)
 {
-	if(!file_exists(STORAGE_LOCATION)) mkdir(STORAGE_LOCATION, 0777, true);
-	if (!file_exists(STORAGE_LOCATION . $file->getFileName() . ".yml")) {
-		file_put_contents(STORAGE_LOCATION . $file->getFileName() . ".yml", "");
+
+	if (!file_exists(STORAGE_LOCATION  . "en.yml")) {
+		file_put_contents(STORAGE_LOCATION . "en.yml", "");
 	}
-	$existingKeys = \Symfony\Component\Yaml\Yaml::parseFile(STORAGE_LOCATION . $file->getFilename().'.yml');
-	foreach ($keys as $key) {
-		if (!isset($existingKeys[$key])) {
-			$existingKeys[$key] = "";
-		}
+	$currentKeys = \Symfony\Component\Yaml\Yaml::parseFile(STORAGE_LOCATION .'en.yml');
+	foreach ($keys as $translationFile) {
+		$currentKeys[$file->getFilename()] = $keys;
 	}
 
-	file_put_contents(STORAGE_LOCATION . $file->getFileName() . ".yml", \Symfony\Component\Yaml\Yaml::dump($existingKeys));
+	file_put_contents(STORAGE_LOCATION . "en.yml", \Symfony\Component\Yaml\Yaml::dump($currentKeys));
 }
 
 function extractTranslations(\SplFileInfo $file)
 {
-	$regex1 = '/(?:__\((?:(?:"|\'|\s)+)(?:\s)?)([^\'"]*)(?:(?:"|\'|\s)+\))/m';
-	$regex2 = '/(?:__\((?:"|\'|\s)+(?:\s)?)([^\'"]*)(?:"|\'|\s)+(?:(?:,)\s)+(?:\[)(.*?)(?:\])/m';
-	$regex3 = '/(?:__\((?:"|\'|\s)+(?:\s)?)([^\'"]*)(?:"|\'|\s)+(?:(?:,)\s)+(?:"|\'|\s)+(?:\s)?([^\'"]*)(?:"|\'|\s)+(?:(?:,)\s)+(?:\[)(.*?)(?:\])/m';
+	$regex1 = "/(?:__\((?:(?:\"|'|\s)+)(?:\s)?)([^\"'\\\]*(?:\\\.[^\"'\\\]*)*)(?:(?:\"|'|\s)+\))/m";
+	$regex2 = "/(?:__\((?:\"|'|\s)+(?:\s)?)([^\"'\\\]*(?:\\\.[^\"'\\\]*)*)(?:\"|'|\s)+(?:(?:,)\s)+(?:\[)(.*?)(?:\])/m";
+	$regex3 = "/(?:__\((?:\"|'|\s)+(?:\s)?)([^\"'\\\]*(?:\\\.[^\"'\\\]*)*)(?:\"|'|\s)+(?:(?:,)\s)+(?:\"|'|\s)+(?:\s)?([^\"'\\\]*(?:\\\.[^\"'\\\]*)*)(?:\"|'|\s)+(?:(?:,)\s)+(?:\[)(.*?)(?:\])/m";
 	$matches = [
 		0 => [],
 		1 => [],

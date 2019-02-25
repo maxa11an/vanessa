@@ -15,19 +15,26 @@ class YamlSQL
 {
 	const RESULT_NONE = NULL;
 	private $parsedData;
-	private $storageFile;
+	protected $storageFile;
 	private $encrypted;
 
-	public function __construct($filename, $encrypted = false)
+	const DIR = __DIR__.'/../../../.vanessa/';
+
+	public function __construct($filename, $encrypted = false, $optionalPath = null)
 	{
 		$this->encrypted = $encrypted;
-		$this->storageFile = $filename;
+		if($optionalPath !== null){
+			$this->storageFile = $optionalPath.$filename;
+		}else{
+			$this->storageFile = self::DIR.$filename;
+		}
+
 
 		$this->openFile();
 	}
 
 	private function openFile(){
-
+		if(!file_exists($this->storageFile)) file_put_contents($this->storageFile, "");
 		$dbContent = file_get_contents($this->storageFile);
 		if($this->encrypted !== false && $dbContent !== "") {
 			$c = base64_decode($dbContent);
@@ -46,29 +53,41 @@ class YamlSQL
 		$this->parsedData = Yaml::parse($dbContent, YAML::PARSE_DATETIME);
 	}
 
-	public final function getFromPrimaryKey($value){
+	public function get($value){
 		$value = trim($value);
 		return @$this->parsedData[$value] ?: null;
 	}
 
-	public function updateWithPrimaryKey($primaryKey, $newValue){
-		if($oldValue = $this->getFromPrimaryKey($primaryKey) !== null){
+	public function getAll():array {
+		return $this->parsedData ?: [];
+	}
+
+	public function update($primaryKey, $newValue){
+		if($oldValue = $this->get($primaryKey) !== null){
 			$newValue = array_merge($oldValue, $newValue);
 		}
 		$this->parsedData[$primaryKey] = $newValue;
 
 		$this->save();
+		return $this;
 	}
 
-	public function addNewWithPrimaryKey($primaryKey, $value){
-		if($oldValue = $this->getFromPrimaryKey($primaryKey) !== null) throw new \Exception("Not unique value");
+	public function add($primaryKey, $value){
+		if($oldValue = $this->get($primaryKey) !== null) throw new \Exception("Not unique value");
 
 		$this->parsedData[$primaryKey] = $value;
 		$this->save();
+		return $this;
 	}
 
-	public function deleteWithPrimaryKey($primaryKey){
-		if($oldValue = $this->getFromPrimaryKey($primaryKey) !== null) return;
+	public function addOrUpdate($primaryKey, $value){
+		$this->parsedData[$primaryKey] = $value;
+		$this->save();
+		return $this;
+	}
+
+	public function delete($primaryKey){
+		if($oldValue = $this->get($primaryKey) !== null) return;
 
 		unset($this->parsedData[$primaryKey]);
 		$this->save();

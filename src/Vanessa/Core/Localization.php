@@ -11,37 +11,34 @@ namespace Vanessa\Core;
 
 use Symfony\Component\Yaml\Yaml;
 
-class Localization
+class Localization extends YamlSession
 {
 	const SESSION_NAME = "LOCALIZATION_SESSION";
 	const STORAGE_LOCATION = __DIR__."/../../VanessaLocalization/";
 
+	public function __construct($file)
+	{
+		parent::__construct($file, false, self::STORAGE_LOCATION);
+	}
+
 	public static function getKey($file, $key){
 
+		$language = "en";
+
+		if($language === "en"){
+			return $key;
+		}
+
 		if(!@$_SESSION[self::SESSION_NAME][$file]){
-			new Localization($file);
+			$localization = new Localization($file);
+			return $localization->getFromFile($key, $file) ?: $key;
 		}
 		return @$_SESSION[self::SESSION_NAME][$file][$key] ?: $key;
 	}
 
-
-
-	public function __construct($file)
-	{
-		if (session_status() === PHP_SESSION_NONE) {
-			session_start();
-		}
-		if(!file_exists(self::STORAGE_LOCATION)){
-			mkdir(self::STORAGE_LOCATION, 0777, true);
-		}
-		if(file_exists(self::STORAGE_LOCATION.$file.".yml")){
-			$_SESSION[self::SESSION_NAME][$file] = Yaml::parseFile(self::STORAGE_LOCATION.$file.".yml");
-		}else{
-			$_SESSION[self::SESSION_NAME][$file] = [];
-		}
-
+	public function getFromFile($key, $file){
+		return parent::get($file)[$key];
 	}
-
 
 
 	public static function __(... $options){
