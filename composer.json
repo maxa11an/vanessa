@@ -1,22 +1,35 @@
 {
-    "name": "maxa11an/vanessa",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Max Allan Niklasson",
-            "email": "hello@maxallan.se"
-        }
-    ],
-    "require": {
-        "twig/twig": "^2.6",
-        "symfony/yaml": "^4.2",
-        "mnapoli/front-yaml": "^1.6",
-        "ext-openssl": "*",
-        "symfony/dotenv": "^4.2"
-    },
-    "autoload": {
-      "psr-4": {
-        "Vanessa\\": "src/Vanessa"
-      }
+  "name": "maxa11an/vanessa",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Max Allan Niklasson",
+      "email": "hello@maxallan.se"
     }
+  ],
+  "require": {
+    "php": ">=7",
+    "twig/twig": "^2.6",
+    "symfony/yaml": "^4.2",
+    "mnapoli/front-yaml": "^1.6",
+    "ext-openssl": "*",
+    "symfony/dotenv": "^4.2",
+    "slim/twig-view": "^2.4",
+    "slim/flash": "^0.4.0",
+    "kanellov/slim-twig-flash": "^0.2.0",
+    "slim/slim": "^3.12",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Vanessa\\": "src/Vanessa"
+    }
+  },
+  "scripts":{
+    "serve": "php -S localhost:8080 -t public_html/vanessa public_html/vanessa/index.php --timeout=0",
+    "post-install-cmd": "php install.php"
+  },
+  "config": {
+    "process-timeout": 0
+  }
 }

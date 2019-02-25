@@ -8,14 +8,4 @@
 
 include __DIR__.'/../vendor/autoload.php';
 
-(new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__.'/../.vanessa/.env');
-
-$settings = \Vanessa\StorageFileHandler::openSecuredStorage(\Vanessa\StorageFileHandler::SECURED_FILE_USERS);
-
-/*$settings->addNewWithPrimaryKey("administrator", [
-	"password" => "lol"
-]);*/
-
-$admin = $settings->getFromPrimaryKey("administrator");
-
-var_dump($admin);
+\Vanessa\Core\Localization::generateTranslationFiles();

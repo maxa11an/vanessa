@@ -25,7 +25,7 @@ $dot->load(VANESSA_STORAGE.'/.env');
 
 
 //Generate user file
-$settings = \Vanessa\StorageFileHandler::openSecuredStorage(\Vanessa\StorageFileHandler::SECURED_FILE_SETTINGS);
+$settings = \Vanessa\Core\StorageFileHandler::openSecuredStorage(\Vanessa\Core\StorageFileHandler::SECURED_FILE_SETTINGS);
 //Adding default user
-\Vanessa\User::create('administrator', 'administrator', 'superuser');
+\Vanessa\Core\User::create('administrator', 'administrator', 'superuser');
 
