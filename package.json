@@ -1,13 +1,13 @@
 {
   "name": "vanessa",
   "version": "1.0.0",
-  "description": "![logo](https://github.com/maxa11an/vanessa/raw/master/docs/images/VanessaCMS.png)",
+  "description": "",
   "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
-    "admin": "grunt --gruntfile Gruntfile.admin.js adminDev"
+    "scss": "grunt adminDev",
+    "build": "webpack",
+    "watch": "concurrently --kill-others \"webpack --watch --mode=development\" \"grunt watch:dev\" \"composer serve\"",
+    "preinstall": "composer install"
   },
   "repository": {
     "type": "git",
@@ -20,19 +20,26 @@
   },
   "homepage": "https://github.com/maxa11an/vanessa#readme",
   "dependencies": {
+    "animate.css": "^3.7.0",
     "bootstrap": "^4.3.1",
+    "bootstrap4-notify": "^4.0.3",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7"
   },
   "devDependencies": {
+    "concurrently": "^4.1.0",
     "grunt": "^1.0.3",
     "grunt-cli": "^1.3.2",
     "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-jshint": "^2.0.0",
     "grunt-contrib-uglify": "^4.0.0",
     "grunt-contrib-watch": "^1.1.0",
+    "grunt-exec": "^3.0.0",
     "grunt-sass": "^3.0.2",
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.11.0",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
   }
 }

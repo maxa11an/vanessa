@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Vanessa</title>
+    {% include '_includes/styles.twig' %}
+</head>
+<body>
+<main class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6 text-center">
+            <h1>Login</h1>
+            <form method="post" action="{{ path_for('vanessa:login') }}">
+                <label for="inputEmail" class="sr-only">{{ __("Username") }}</label>
+                <input value="administrator" type="text" name="username" id="inputEmail" class="form-control"
+                       placeholder="{{ __("Username") }}" required autofocus>
+                <label for="inputPassword" class="sr-only">{{ __("Password") }}</label>
+                <input value="administrator" type="password" name="password" id="inputPassword" class="form-control"
+                       placeholder="{{ __("Password") }}" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __("Sign in") }}</button>
+                <p class="mt-5 mb-3 text-muted">&copy; Vanessa CMS</p>
+            </form>
+        </div>
+    </div>
+</main>
+{% include '_includes/scripts.twig' %}
+</body>
+</html>

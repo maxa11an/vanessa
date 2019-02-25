@@ -1,0 +1,11 @@
+{% extends '_main.twig' %}
+
+
+{% block content %}
+<h1>{{ page.title }}</h1>
+
+{% autoescape %}
+    {{ page.content|raw }}
+{% endautoescape %}
+
+{% endblock %}
