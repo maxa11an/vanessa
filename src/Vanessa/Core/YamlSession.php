@@ -17,6 +17,9 @@ class YamlSession extends YamlSQL
 
 	public function __construct($file = null, $encrypted = false, $optionalPath = null)
 	{
+		if (session_status() === PHP_SESSION_NONE) {
+			session_start();
+		}
 		if($file !== null){
 			parent::__construct($file, $encrypted, $optionalPath);
 			$_SESSION[$this->sessionName][$file] = $this->getAll();
@@ -32,5 +35,8 @@ class YamlSession extends YamlSQL
 		return $_SESSION[$this->sessionName][$key] ?: null;
 	}
 
+	public static function toArray($sessionName){
+		return @$_SESSION[$sessionName] ?: [];
+	}
 
 }

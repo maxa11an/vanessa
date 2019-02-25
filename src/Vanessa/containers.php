@@ -16,13 +16,15 @@ $container['view'] = function ($container) {
 	// Instantiate and add Slim specific extension
 	$router = $container->get('router');
 	$uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
-	$view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
-	$view->addExtension(new \Vanessa\Core\Twig\Extension\Localization());
-
-
 	$view->addExtension(new \Knlv\Slim\Views\TwigMessages(
 		new \Slim\Flash\Messages()
 	));
+	$view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
+
+
+	$view->addExtension(new \Vanessa\Core\Twig\Extension\Localization());
+	$view->addExtension(new \Vanessa\Core\Twig\Extension\Vanessa());
+
 
 	return $view;
 };

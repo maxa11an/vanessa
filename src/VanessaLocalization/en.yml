@@ -10,3 +10,5 @@ login.twig:
 User.php:
     - 'Couldn''t match user nor password.'
     - 'Couldn''t match password.'
+start.twig:
+    - Start
