@@ -38,7 +38,7 @@ class User
 	 */
 	public static function login(string $username, string $password): bool
 	{
-		$userStorage = StorageFileHandler::openSecuredStorage(StorageFileHandler::SECURED_FILE_USERS);
+		$userStorage = new YamlSQL("users.yml", true);
 
 		$user = $userStorage->get($username);
 
@@ -58,7 +58,7 @@ class User
 
 	public static function create(string $username, string $password, string $role = "editor")
 	{
-		$userStorage = StorageFileHandler::openSecuredStorage(StorageFileHandler::SECURED_FILE_USERS);
+		$userStorage = new YamlSQL("users.yml", true);
 		$userStorage->add($username, [
 			"password" => password_hash($password, PASSWORD_BCRYPT),
 			"role" => $role
