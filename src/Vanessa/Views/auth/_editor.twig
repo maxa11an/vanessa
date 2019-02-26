@@ -4,7 +4,7 @@
 
     <div class="d-flex h-100">
         <div class="row flex-fill">
-            <div class="{{ block('leftEditor') is defined and block('rightEditor') is defined ? "col-5" : "col-12" }}">
+            <div class="{{ block('leftEditor') is defined and block('rightEditor') is defined ? "col-5" : "col-12" }} editor">
                 <div class="row h-100">
                     <div class="col-md-12 d-flex flex-column flex-fill px-0">
                         <div class="d-flex editor-header border-bottom border-primary align-items-center">
@@ -24,7 +24,7 @@
                 </div>
             </div>
             {% if block("rightEditor") is defined %}
-                <div class="col-7 border-left border-primary">
+                <div class="col-7 border-left border-primary editor">
                     <div class="row h-100">
                         <div class="col-md-12 d-flex flex-column flex-fill px-0">
                             <div class="d-flex editor-header border-bottom border-primary align-items-center">

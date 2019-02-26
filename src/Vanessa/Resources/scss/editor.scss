@@ -1,7 +1,12 @@
+.editor{
+  height: 100%;
+  overflow-y: auto;
+}
 .editor-header{
   position: sticky;
-  top: 48px;
+  top: 0px;
   background: $white;
+  z-index: $zindex-sticky;
 }
 
 .editor-body{

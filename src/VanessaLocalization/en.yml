@@ -16,11 +16,11 @@ start.twig:
     - Start
 edit.twig:
     - 'Edit template'
-    - Template
-    - Action
-    - Delete
-    - 'Add template'
+    - 'Template name'
+    - 'Hide body'
+    - 'Save template'
     - 'Field editor'
+    - Add
 list.twig:
     - 'Add template'
     - Template
@@ -28,3 +28,29 @@ list.twig:
     - Delete
 TextInputfield.php:
     - 'Text Field'
+Inputfield.php:
+    - 'Enter default value'
+RadiogroupInputfield.php:
+    - Radiogroup
+CheckboxInputfield.php:
+    - Checkbox
+TextareaInputfield.php:
+    - 'Text Area'
+SelectInputfield.php:
+    - 'Select Field'
+DateInputfield.php:
+    - 'Date Field'
+NumbersInputfield.php:
+    - 'Numbers Field'
+ColorpickerInputfield.php:
+    - Colorpicker
+SortablelistInputfield.php:
+    - 'Sortable list'
+SingleimageInputfield.php:
+    - 'Single file'
+MultifileInputfield.php:
+    - 'Multiple file'
+SinglefileInputfield.php:
+    - 'Single file'
+FieldgroupInputfield.php:
+    - Checkbox
