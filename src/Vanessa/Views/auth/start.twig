@@ -1,5 +1,7 @@
-{% extends 'auth/_main.twig' %}
+{% set title = __("Start") %}
 
+{% extends 'auth/_main.twig' %}
 {% block content %}
 <h1>Start</h1>
+    <pre>{{ vanessa|json_encode }}</pre>
 {% endblock %}

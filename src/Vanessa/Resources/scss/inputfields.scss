@@ -1,0 +1,24 @@
+.inputfield-list {
+  .item {
+	height: 5rem;
+	opacity: 0.5;
+	transition: $transition-base;
+	&:hover {
+	  opacity: 1;
+	}
+  }
+  .center {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	.form-group {
+	  width: 100%;
+	}
+  }
+  .lnr:hover{
+	text-shadow: 0 0 2px $primary;
+  }
+}

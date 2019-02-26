@@ -1,8 +1,7 @@
 ---
-name: Home
-layout: home
-hide_content: false
-is_partial: false
+name: home
+has_body: false
+is_blockable: false
 fields:
 - name: title
   label: Title
@@ -14,4 +13,4 @@ fields:
 - type: text
   label: Hero Heading
   name: heading
-  default: Belkirk College
+  default: This is default value from home.yml

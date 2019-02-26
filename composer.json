@@ -27,7 +27,8 @@
   },
   "scripts":{
     "serve": "php -S localhost:8080 -t public_html/vanessa public_html/vanessa/index.php --timeout=0",
-    "post-install-cmd": "php install.php"
+    "post-install-cmd": "php install.php",
+    "post-autoload-dump": "php src/.bin/generateTranslationsSource.php"
   },
   "config": {
     "process-timeout": 0

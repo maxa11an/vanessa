@@ -6,4 +6,9 @@
  * Time: 10:11
  */
 
-new \Vanessa\Middlewares\AuthMiddleware($app);
+
+$app->add(\Vanessa\Middlewares\BaseMiddleware::class);
+
+$app->add(\Vanessa\Middlewares\AuthMiddleware::class);
+
+

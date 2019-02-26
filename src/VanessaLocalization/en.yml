@@ -1,0 +1,56 @@
+LoginController.php:
+    - 'Logged in successfully'
+_main.twig:
+    - 'Sign out'
+    - Dashboard
+    - Settings
+    - Templates
+login.twig:
+    - Username
+    - Password
+    - 'Sign in'
+User.php:
+    - 'Couldn''t match user nor password.'
+    - 'Couldn''t match password.'
+start.twig:
+    - Start
+edit.twig:
+    - 'Edit template'
+    - 'Template name'
+    - 'Hide body'
+    - 'Save template'
+    - 'Field editor'
+    - Add
+list.twig:
+    - 'Add template'
+    - Template
+    - Action
+    - Delete
+TextInputfield.php:
+    - 'Text Field'
+Inputfield.php:
+    - 'Enter default value'
+RadiogroupInputfield.php:
+    - Radiogroup
+CheckboxInputfield.php:
+    - Checkbox
+TextareaInputfield.php:
+    - 'Text Area'
+SelectInputfield.php:
+    - 'Select Field'
+DateInputfield.php:
+    - 'Date Field'
+NumbersInputfield.php:
+    - 'Numbers Field'
+ColorpickerInputfield.php:
+    - Colorpicker
+SortablelistInputfield.php:
+    - 'Sortable list'
+SingleimageInputfield.php:
+    - 'Single file'
+MultifileInputfield.php:
+    - 'Multiple file'
+SinglefileInputfield.php:
+    - 'Single file'
+FieldgroupInputfield.php:
+    - Checkbox

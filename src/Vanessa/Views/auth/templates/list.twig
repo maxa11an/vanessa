@@ -1,0 +1,30 @@
+{% extends "auth/_editor.twig" %}
+{% set title = __("Add template") %}
+{% set leftEditorTitle = title %}
+{% block leftEditor %}
+    <div class="list-items">
+        <div class="row header align-items-center">
+            <div class="col-8">
+                <b>{{ __("Template") }}</b>
+            </div>
+            <div class="col-4">
+                <b>{{ __("Action") }}</b>
+            </div>
+        </div>
+        {% for template in templates %}
+            <div class="row item">
+                <div class="col-8 d-flex align-items-center position-relative">
+                    <a href="{{ path_for('vanessa:template:edit', {'template': template._id }) }}" class="stretched-link">{{ template.name }}</a>
+                </div>
+                <div class="col-4 d-flex align-items-center">
+                    {{ __("Delete") }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block leftEditorAction %}
+    <a href="{{ path_for("vanessa:template:add") }}" class="btn btn-sm btn-success">{{ __("Add template") }}</a>
+
+{% endblock %}

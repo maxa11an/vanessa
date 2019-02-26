@@ -38,16 +38,16 @@ class User
 	 */
 	public static function login(string $username, string $password): bool
 	{
-		$userStorage = StorageFileHandler::openSecuredStorage(StorageFileHandler::SECURED_FILE_USERS);
+		$userStorage = new YamlSQL("users.yml", true);
 
-		$user = $userStorage->getFromPrimaryKey($username);
+		$user = $userStorage->get($username);
 
 		if ($user === YamlSQL::RESULT_NONE) {
-			throw new VanessaException( Localization::__("Couldn't match user nor password."));
+			throw new VanessaException( Localization::__("Couldn\'t match user nor password."));
 		}
 
 		if (password_verify($password, $user['password']) === FALSE) {
-			throw new VanessaException( Localization::__("Couldn't match password."));
+			throw new VanessaException( Localization::__("Couldn\'t match password."));
 		}
 
 		$_SESSION[self::SESSION_NAME] = (new User($user))->__toArray();
@@ -58,10 +58,11 @@ class User
 
 	public static function create(string $username, string $password, string $role = "editor")
 	{
-		$userStorage = StorageFileHandler::openSecuredStorage(StorageFileHandler::SECURED_FILE_USERS);
-		$userStorage->addNewWithPrimaryKey($username, [
+		$userStorage = new YamlSQL("users.yml", true);
+		$userStorage->add($username, [
 			"password" => password_hash($password, PASSWORD_BCRYPT),
-			"role" => $role
+			"role" => $role,
+			"username" => $username
 		]);
 
 		$userStorage = NULL;

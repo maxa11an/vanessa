@@ -1,0 +1,16 @@
+.editor{
+  height: 100%;
+  overflow-y: auto;
+}
+.editor-header{
+  position: sticky;
+  top: 0px;
+  background: $white;
+  z-index: $zindex-sticky;
+}
+
+.editor-body{
+  .header{
+	background: rgba($primary, 0.5);
+  }
+}

@@ -21,7 +21,8 @@ if(session_status() === PHP_SESSION_NONE){
 
 $app = new \Slim\App([
 	"settings" => [
-		"displayErrorDetails" => true
+		"displayErrorDetails" => true,
+		'determineRouteBeforeAppMiddleware' => true
 	]
 ]);
 

@@ -1,0 +1,56 @@
+{% extends "auth/_main.twig" %}
+
+{% block content %}
+
+    <div class="d-flex h-100">
+        <div class="row flex-fill">
+            <div class="{{ block('leftEditor') is defined and block('rightEditor') is defined ? "col-5" : "col-12" }} editor">
+                <div class="row h-100">
+                    <div class="col-md-12 d-flex flex-column flex-fill px-0">
+                        <div class="d-flex editor-header border-bottom border-primary align-items-center">
+                            <div class="h-100 d-flex align-items-center p-4">
+                                <h3 class="m-0 h6">{{ leftEditorTitle }}</h3>
+                            </div>
+                            <div class="d-flex flex-fill h-100 align-items-center justify-content-end px-4">
+                                {% if block('leftEditorAction') is defined %}
+                                    {{ block('leftEditorAction') }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="flex-fill p-4 editor-body">
+                            {{ block('leftEditor') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if block("rightEditor") is defined %}
+                <div class="col-7 border-left border-primary editor">
+                    <div class="row h-100">
+                        <div class="col-md-12 d-flex flex-column flex-fill px-0">
+                            <div class="d-flex editor-header border-bottom border-primary align-items-center">
+                                <div class=" h-100 d-flex align-items-center p-4">
+                                    <h3 class="m-0 h6">{{ rightEditorTitle }}</h3>
+                                </div>
+                                <div class="flex-fill h-100 align-items-center justify-content-end px-4">
+                                    {% if block('rightEditorAction') is defined %}
+                                        {{ block('rightEditorAction') }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="flex-fill p-4 editor-body">
+                                {{ block('rightEditor') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="d-none">
+        {% if block('hiddenContent') is defined %}
+            {{ block('hiddenContent') }}
+        {% endif %}
+    </div>
+
+{% endblock %}
