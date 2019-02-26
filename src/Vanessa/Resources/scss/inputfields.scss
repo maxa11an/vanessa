@@ -1,10 +1,14 @@
 .inputfield-list {
   .item {
-	height: 5rem;
+	background: rgba($secondary, 0.2);
+	height: 7rem;
 	opacity: 0.5;
 	transition: $transition-base;
 	&:hover {
 	  opacity: 1;
+	}
+	&.moved{
+	  background: rgba($primary, 0.8);
 	}
   }
   .center {
@@ -22,3 +26,4 @@
 	text-shadow: 0 0 2px $primary;
   }
 }
+

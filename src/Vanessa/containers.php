@@ -20,6 +20,7 @@ $container['view'] = function ($container) {
 		new \Slim\Flash\Messages()
 	));
 	$view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
+	$view->addExtension(new \Twig\Extension\StringLoaderExtension());
 
 
 	$view->addExtension(new \Vanessa\Core\Twig\Extension\Localization());

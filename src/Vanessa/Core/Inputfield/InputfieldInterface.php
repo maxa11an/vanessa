@@ -11,8 +11,9 @@ namespace Vanessa\Core\Inputfield;
 
 interface InputfieldInterface
 {
-	public function renderOptions();
+
 	public function renderField();
+	public static function renderOptions();
 	public static function renderAdd();
 	public static function renderListItem();
 

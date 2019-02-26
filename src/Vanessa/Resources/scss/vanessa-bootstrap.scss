@@ -2,7 +2,10 @@
   @include button-size($btn-padding-y-sm / 2, $btn-padding-x-sm / 2, $btn-font-size-sm - 0.175, $btn-line-height-sm, $btn-border-radius-sm);
 }
 
-
+.modal-dialog{
+  box-shadow: $box-shadow-lg;
+  border: none !important;
+}
 
 
 @each $breakpoint in map-keys($grid-breakpoints) {
@@ -32,4 +35,11 @@
 	  }
 	}
   }
+}
+
+
+.modal.fade .modal-dialog {
+  -webkit-transform: translate(0);
+  -moz-transform: translate(0);
+  transform: translate(0);
 }

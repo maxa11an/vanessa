@@ -14,3 +14,11 @@ fields:
   label: Hero Heading
   name: heading
   default: This is default value from home.yml
+- type: checkbox
+  label: Hero Heading
+  name: checked
+  default:
+- type: select
+  label: Hero Heading
+  name: selector
+  default:

@@ -33,8 +33,4 @@ class SinglefileInputfield extends Inputfield implements InputfieldInterface
 		// TODO: Implement renderField() method.
 	}
 
-	public function renderOptions()
-	{
-		// TODO: Implement renderOptions() method.
-	}
 }

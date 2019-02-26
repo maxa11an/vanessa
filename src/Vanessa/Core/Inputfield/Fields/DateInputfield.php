@@ -35,8 +35,4 @@ class DateInputfield extends Inputfield implements InputfieldInterface
 
 	}
 
-	public function renderOptions()
-	{
-		// TODO: Implement renderOptions() method.
-	}
 }

@@ -50,8 +50,11 @@ class TemplateController extends BaseController
 			return !in_array($f['name'], ["title"]);
 		}));
 
+		$fieldConfigs = array_map(function(string $field){
+			return $field::renderOptions();
+		}, $fields);
 
-		return $this->view()->render($this->response(), "auth/templates/edit.twig", ["template" => $template, "fieldsOptions" => $fieldsOptions, "fieldList" => $fieldList]);
+		return $this->view()->render($this->response(), "auth/templates/edit.twig", ["template" => $template, "fieldsOptions" => $fieldsOptions, "fieldList" => $fieldList, "fieldConfigs" => $fieldConfigs]);
 	}
 
 	public static function getTemplates(){

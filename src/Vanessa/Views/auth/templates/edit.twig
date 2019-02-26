@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div id="Inputfields" class="inputfield-list mt-4 pt-4"></div>
+        <div id="Inputfields" class="inputfield-list mt-5 p-n3 pt-4"></div>
     </form>
 {% endblock %}
 
@@ -32,7 +32,7 @@
 
 {% set rightEditorTitle = __("Field editor") %}
 {% block rightEditor %}
-    <div class="row">
+    <div class="row" id="FieldOptions">
         {% for field in fieldsOptions %}
             <div class="col-4 my-4">
                 <div class="card h-100 text-center">
@@ -44,7 +44,7 @@
                             <img class="d-block mx-auto" src="{{ field.icon }}"/>
                         </div>
                         <div class="mt-auto w-100">
-                            <a href="#" class="w-100 btn btn-sm btn-light">{{ __("Add") }}</a>
+                            <a href="#" data-action="add" data-type="{{ field.Inputfield }}" class="w-100 btn btn-sm btn-light">{{ __("Add") }}</a>
                         </div>
                     </div>
                 </div>
@@ -52,15 +52,15 @@
         {% endfor %}
     </div>
 {% endblock %}
-{% block hiddenContent %}
-    <div id="InputfieldTypes" >
+{% block footerContent %}
+    <div id="InputfieldTypes" class="d-none" >
         {% for field in fieldList %}
-            <div class="item d-flex " data-type="{{ field.info.Inputfield }}">
+            <div class="item d-flex p-4 my-2" data-type="{{ field.info.Inputfield }}">
                 <div class="d-flex flex-column h-75 align-self-center">
-                    <div class="mb-auto clickable">
+                    <div class="mb-auto clickable item-action-up">
                         <span class="lnr lnr-chevron-up"></span>
                     </div>
-                    <div class="mt-auto clickable">
+                    <div class="mt-auto clickable item-action-down">
                         <span class="lnr lnr-chevron-down"></span>
                     </div>
                 </div>
@@ -68,15 +68,38 @@
                     {{ field.html|raw }}
                 </div>
                 <div class="d-flex flex-column h-75 align-self-center">
-                    <div class="mb-auto clickable">
+                    <div class="mb-auto clickable item-action-settings">
                         <span class="lnr lnr-cog"></span>
                     </div>
-                    <div class="mt-auto clickable">
+                    <div class="mt-auto clickable item-action-remove">
                         <span class="lnr lnr-trash"></span>
                     </div>
                 </div>
             </div>
 
+        {% endfor %}
+    </div>
+    <div id="InputfieldConfig">
+        {% for field in fieldConfigs %}
+            <div class="modal fade" data-type="{{ field.info.Inputfield }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">{{ field.info.title }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ include(template_from_string(field.html|raw)) }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
     </div>
     <script>
