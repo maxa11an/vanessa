@@ -1,5 +1,8 @@
-/vendor/
-/node_modules/
-/.vanessa/
-/public_html/*
-!/public_html/vanessa/index.php
+vendor/
+node_modules/
+.vanessa/
+
+public_html/*
+!public_html/vanessa
+public_html/vanessa/*
+!public_html/vanessa/index.php
