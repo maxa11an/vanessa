@@ -14,15 +14,14 @@ use Vanessa\Core\Localization;
 
 class RadiogroupInputfield extends Inputfield implements InputfieldInterface
 {
-	const NAME = "Radiogroup";
 	public static function renderAdd()
 	{
 		$p = parent::renderAdd();
 		$t = [
-			"title" => Localization::__("Radiogroup"),
-			"icon" => "https://via.placeholder.com/100?text=Icon",
+			"title" => Localization::__("Radio group"),
 			"sort" => 5
 		];
+
 		return array_merge($p, $t);
 	}
 

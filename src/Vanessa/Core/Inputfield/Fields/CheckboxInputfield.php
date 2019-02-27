@@ -14,15 +14,14 @@ use Vanessa\Core\Localization;
 
 class CheckboxInputfield extends Inputfield implements InputfieldInterface
 {
-	const NAME = "Checkbox";
 	public static function renderAdd()
 	{
 		$p = parent::renderAdd();
 		$t = [
 			"title" => Localization::__("Checkbox"),
-			"icon" => "https://via.placeholder.com/100?text=Icon",
 			"sort" => 4
 		];
+
 		return array_merge($p, $t);
 	}
 
@@ -38,9 +37,12 @@ class CheckboxInputfield extends Inputfield implements InputfieldInterface
 		$p['html'] = '<div class="center border-left border-right">'.
 			'<div class="form-group">'.
 			'<label data-ref-name></label>'.
-			'<div>'.
-			'<input data-ref-default type="checkbox" value="true" name="fields[][default]" placeholder="'.Localization::__("Enter default value").'" autocomplete="off" class="form-check-input">'.
-			'<span class="form-check-label">'.Localization::__("Checked as default").'</span>'.
+			'<div class="switch-group">'.
+			'<label class="switch-control switch-control-sm">'.
+			'<input data-ref-default type="checkbox" value="true" name="fields[][default]" class="success">'.
+			'<span class="slider"></span>'.
+			'</label>'.
+			'<label>'.Localization::__("Default state of checkbox").'</label>'.
 			'</div>'.
 			'</div>'.
 			'</div>';

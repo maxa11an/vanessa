@@ -14,15 +14,14 @@ use Vanessa\Core\Localization;
 
 class FieldgroupInputfield extends Inputfield implements InputfieldInterface
 {
-	const NAME = "Checkbox";
 	public static function renderAdd()
 	{
 		$p = parent::renderAdd();
 		$t = [
-			"title" => Localization::__("Fieldgroup"),
-			"icon" => "https://via.placeholder.com/100?text=Icon",
+			"title" => Localization::__("Field group"),
 			"sort" => 11
 		];
+
 		return array_merge($p, $t);
 	}
 

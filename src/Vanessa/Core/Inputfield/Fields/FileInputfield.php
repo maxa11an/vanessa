@@ -12,17 +12,16 @@ use Vanessa\Core\Inputfield\Inputfield;
 use Vanessa\Core\Inputfield\InputfieldInterface;
 use Vanessa\Core\Localization;
 
-class MultifileInputfield extends Inputfield implements InputfieldInterface
+class FileInputfield extends Inputfield implements InputfieldInterface
 {
-	const NAME = "Checkbox";
 	public static function renderAdd()
 	{
 		$p = parent::renderAdd();
 		$t = [
-			"title" => Localization::__("Multiple file"),
-			"icon" => "https://via.placeholder.com/100?text=Icon",
-			"sort" => 8
+			"title" => Localization::__("File upload"),
+			"sort" => 7
 		];
+
 		return array_merge($p, $t);
 	}
 
@@ -32,6 +31,5 @@ class MultifileInputfield extends Inputfield implements InputfieldInterface
 	{
 		// TODO: Implement renderField() method.
 	}
-
 
 }

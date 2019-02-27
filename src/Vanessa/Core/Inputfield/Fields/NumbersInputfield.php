@@ -8,21 +8,18 @@
 
 namespace Vanessa\Core\Inputfield\Fields;
 
-
 use Vanessa\Core\Inputfield\Inputfield;
 use Vanessa\Core\Inputfield\InputfieldInterface;
 use Vanessa\Core\Localization;
 
 class NumbersInputfield extends Inputfield implements InputfieldInterface
 {
-	const NAME = "Text";
 	public static function renderAdd()
 	{
 		$p = parent::renderAdd();
 		$t = [
-			"title" => Localization::__("Numbers Field"),
-			"icon" => "https://via.placeholder.com/100?text=Icon",
-			"sort" => 1
+			"title" => Localization::__("Numbers field"),
+			"sort" => 3
 		];
 
 		return array_merge($p, $t);

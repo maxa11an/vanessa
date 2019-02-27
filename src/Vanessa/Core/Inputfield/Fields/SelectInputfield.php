@@ -8,20 +8,17 @@
 
 namespace Vanessa\Core\Inputfield\Fields;
 
-
 use Vanessa\Core\Inputfield\Inputfield;
 use Vanessa\Core\Inputfield\InputfieldInterface;
 use Vanessa\Core\Localization;
 
 class SelectInputfield extends Inputfield implements InputfieldInterface
 {
-	const NAME = "Text";
 	public static function renderAdd()
 	{
 		$p = parent::renderAdd();
 		$t = [
-			"title" => Localization::__("Select Field"),
-			"icon" => "https://via.placeholder.com/100?text=Icon",
+			"title" => Localization::__("Select field"),
 			"sort" => 3
 		];
 
