@@ -24,7 +24,8 @@ $container['view'] = function ($container) {
 
 
 	$view->addExtension(new \Vanessa\Core\Twig\Extension\Localization());
-	$view->addExtension(new \Vanessa\Core\Twig\Extension\Vanessa());
+	$view->addExtension(new \Vanessa\Core\Twig\Extension\VanessaGlobals());
+	$view->addExtension(new \Vanessa\Core\Twig\Extension\VanessaFunctions($router));
 
 
 	return $view;

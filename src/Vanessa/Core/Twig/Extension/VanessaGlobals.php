@@ -9,7 +9,7 @@
 namespace Vanessa\Core\Twig\Extension;
 
 
-class Vanessa extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class VanessaGlobals extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
 	public function getGlobals()
 	{

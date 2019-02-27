@@ -4,5 +4,7 @@ node_modules/
 
 public_html/*
 !public_html/vanessa
+!public_html/.htaccess
 public_html/vanessa/*
 !public_html/vanessa/index.php
+!public_html/vanessa/.htaccess

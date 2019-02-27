@@ -21,6 +21,7 @@ edit.twig:
     - 'Save template'
     - 'Field editor'
     - Add
+    - Close
 list.twig:
     - 'Add template'
     - Template
@@ -30,6 +31,12 @@ TextInputfield.php:
     - 'Text Field'
 Inputfield.php:
     - 'Enter default value'
+    - Label
+    - 'The label is show in editor of the field'
+    - 'Label goes here'
+    - Name
+    - 'The name of the field'
+    - 'Name goes here'
 RadiogroupInputfield.php:
     - Radiogroup
 CheckboxInputfield.php:
@@ -53,4 +60,4 @@ MultifileInputfield.php:
 SinglefileInputfield.php:
     - 'Single file'
 FieldgroupInputfield.php:
-    - Checkbox
+    - Fieldgroup

@@ -6,7 +6,8 @@
   "scripts": {
     "scss": "grunt adminDev",
     "build": "webpack",
-    "watch": "concurrently --kill-others \"webpack --watch --mode=development\" \"grunt watch:dev\" \"composer serve\"",
+    "watch": "concurrently --kill-others \"webpack --watch --mode=development\" \"grunt watch:dev\"",
+    "serve": "concurrently --kill-others \"webpack --watch --mode=development\" \"grunt watch:dev\" \"composer serve\"",
     "preinstall": "composer install"
   },
   "repository": {

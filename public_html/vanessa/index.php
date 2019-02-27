@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: maxallan
+ * Date: 2019-02-27
+ * Time: 09:27
+ */
 include __DIR__.'/../../vendor/autoload.php';
 
 (new \Symfony\Component\Dotenv\Dotenv())->load(__DIR__.'/../../.vanessa/.env');
