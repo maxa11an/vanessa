@@ -12,6 +12,8 @@ namespace Vanessa\Controllers;
 use Symfony\Component\Yaml\Yaml;
 use Vanessa\Core\BaseController;
 use Vanessa\Core\Inputfield\InputFieldLoad;
+use Webuni\FrontMatter\Document;
+use Webuni\FrontMatter\FrontMatter;
 
 
 class TemplateController extends BaseController
@@ -27,11 +29,13 @@ class TemplateController extends BaseController
 	}
 
 	public function editTemplate(){
+		$frontMatter = new FrontMatter();
+		$file = base64_decode($this->arguments()->get('template'));
+		$template = $frontMatter->parse(file_get_contents($file));
 
-		$template = Yaml::parseFile(base64_decode($this->arguments()->get('template')));
 		if($this->request()->isPost()){
+			$old = $template->getData();
 			$post = $this->request()->getParsedBody();
-
 			$fields = [];
 			$row = [];
 			foreach($post['fields'] as $fieldGroup){
@@ -44,9 +48,22 @@ class TemplateController extends BaseController
 					}
 				}
 			}
-			var_dump($fields);
-			exit();
+
+			foreach($fields as $k => $field) {
+				$options = $field['_options'];
+				unset($field['_options']);
+				$fields[$k] = array_replace($options, $field);
+
+			}
+			$post['fields'] = $fields;
+
+
+			$template->setData( array_replace_recursive($old, $post));
+
+			file_put_contents($file, $frontMatter->dump($template));
 		}
+
+		$templateSettings = $template->getData();
 
 		$fields = InputFieldLoad::all();
 
@@ -64,7 +81,7 @@ class TemplateController extends BaseController
 		}, $fields);
 
 		//Remove some fields
-		$template['fields'] = array_values(array_filter($template['fields'], function($f){
+		$templateFields['fields'] = array_values(array_filter($templateSettings['fields'], function($f){
 			return !in_array($f['name'], ["title"]);
 		}));
 
@@ -72,7 +89,7 @@ class TemplateController extends BaseController
 			return $field::renderOptions();
 		}, $fields);
 
-		return $this->view()->render($this->response(), "auth/templates/edit.twig", ["template" => $template, "fieldsOptions" => $fieldsOptions, "fieldList" => $fieldList, "fieldConfigs" => $fieldConfigs]);
+		return $this->view()->render($this->response(), "auth/templates/edit.twig", ["template" => $templateSettings, "fieldsOptions" => $fieldsOptions, "fieldList" => $fieldList, "fieldConfigs" => $fieldConfigs]);
 	}
 
 	public static function getTemplates(){

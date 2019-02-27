@@ -11,14 +11,14 @@
     "php": ">=7",
     "twig/twig": "^2.6",
     "symfony/yaml": "^4.2",
-    "mnapoli/front-yaml": "^1.6",
     "ext-openssl": "*",
     "symfony/dotenv": "^4.2",
     "slim/twig-view": "^2.4",
     "slim/flash": "^0.4.0",
     "kanellov/slim-twig-flash": "^0.2.0",
     "slim/slim": "^3.12",
-    "ext-json": "*"
+    "ext-json": "*",
+    "webuni/front-matter": "^1.1"
   },
   "autoload": {
     "psr-4": {

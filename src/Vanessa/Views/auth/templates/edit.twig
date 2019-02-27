@@ -8,11 +8,11 @@
                 <div class="form-row">
                     <div class="col-8">
                         <label>{{ __("Template name") }}</label>
-                        <input class="form-control" type="text" value="{{ template.name }}" autocomplete="off" name="template[name]"/>
+                        <input class="form-control" type="text" value="{{ template.name }}" autocomplete="off" name="name"/>
                     </div>
                     <div class="col d-flex align-items-center justify-content-end">
                         <div class="form-check">
-                            <input class="form-check-input" name="template[has_body]" type="checkbox" value=""
+                            <input class="form-check-input" name="has_body" type="checkbox" value=""
                                    id="hasBody">
                             <label class="form-check-label" for="defaultCheck1">
                                 {{ __("Hide body") }}

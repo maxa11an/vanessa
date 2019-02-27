@@ -12,6 +12,7 @@ namespace Vanessa\Core;
 use Mni\FrontYAML\Document;
 use Mni\FrontYAML\Parser;
 use Symfony\Component\Yaml\Yaml;
+use Webuni\FrontMatter\FrontMatter;
 
 class Generator
 {
@@ -32,7 +33,7 @@ class Generator
 	}
 
 	private function loadContent($file){
-		$this->content = (new Parser())->parse(file_get_contents($file));
+		$this->content = (new FrontMatter())->parse(file_get_contents($file));
 		if($this->content instanceof Document){
 			if(!$this->content->getYAML()['template']){
 				throw new \Exception("No template found");

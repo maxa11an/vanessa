@@ -3,22 +3,7 @@ name: home
 has_body: false
 is_blockable: false
 fields:
-- name: title
-  label: Title
-  type: text
-  hidden: false
-  default: ''
-  config:
-    required: true
-- type: text
-  label: Hero Heading
-  name: heading
-  default: This is default value from home.yml
-- type: checkbox
-  label: Hero Heading
-  name: checked
-  default:
-- type: select
-  label: Hero Heading
-  name: selector
-  default:
+    - { default: '', type: checkbox, label: 'Hero Heading', name: checked }
+    - { default: '', type: select, label: 'Hero Heading', name: selector }
+    - { default: 'This is default value from home.yml', type: text, label: 'Hero Heading', name: heading }
+---
