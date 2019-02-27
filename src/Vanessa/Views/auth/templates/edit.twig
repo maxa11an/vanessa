@@ -8,15 +8,18 @@
                 <div class="form-row">
                     <div class="col-8">
                         <label>{{ __("Template name") }}</label>
-                        <input class="form-control" type="text" value="{{ template.name }}" autocomplete="off" name="name"/>
+                        <input class="form-control" type="text" value="{{ template.name }}" autocomplete="off"
+                               name="name"/>
                     </div>
                     <div class="col d-flex align-items-center justify-content-end">
-                        <div class="form-check">
-                            <input class="form-check-input" name="has_body" type="checkbox" value=""
-                                   id="hasBody">
-                            <label class="form-check-label" for="defaultCheck1">
-                                {{ __("Hide body") }}
+                        <div class="switch-group">
+                            <label class="switch-control switch-control-sm">
+                                <input data-ref-default type="checkbox"
+                                       value="true" {{ template.has_body ? 'checked="checked"' : '' }}
+                                       name="fields[][has_body]" class="primary">
+                                <span class="slider"></span>
                             </label>
+                            <label>{{ __("Hide body") }}</label>
                         </div>
                     </div>
                 </div>
@@ -40,11 +43,12 @@
                         <div class="mb-auto w-100">
                             <h6 class="mb-0">{{ field.title }}</h6>
                         </div>
-                        <div class="my-auto w-100 py-3">
-                            <img class="d-block mx-auto" src="{{ field.icon }}"/>
+                        <div class="d-flex align-items-center my-auto py-3 inputfields-icon mx-auto" >
+                            <img class="d-block mx-auto my-2" src="{{ asset(field.Inputfield ~ '.svg') }}"/>
                         </div>
                         <div class="mt-auto w-100">
-                            <a href="#" data-action="add" data-type="{{ field.Inputfield }}" class="w-100 btn btn-sm btn-light">{{ __("Add") }}</a>
+                            <a href="#" data-action="add" data-type="{{ field.Inputfield }}"
+                               class="w-100 btn btn-sm btn-light">{{ __("Add") }}</a>
                         </div>
                     </div>
                 </div>
@@ -53,7 +57,7 @@
     </div>
 {% endblock %}
 {% block footerContent %}
-    <div id="InputfieldTypes" class="d-none" >
+    <div id="InputfieldTypes" class="d-none">
         {% for field in fieldList %}
             <div class="item d-flex p-4 my-2" data-type="{{ field.info.Inputfield }}">
                 <div class="d-flex flex-column h-75 align-self-center">
@@ -75,29 +79,53 @@
                         <span class="lnr lnr-trash"></span>
                     </div>
                 </div>
-                <textarea class="d-none" name="fields[][_options]"></textarea>
+                <textarea class="d-none" name="fields[][_options]">{{ field.default|json_encode }}</textarea>
             </div>
 
         {% endfor %}
     </div>
     <div id="InputfieldConfig">
         {% for field in fieldConfigs %}
-            <div class="modal fade" data-type="{{ field.info.Inputfield }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal fade" data-type="{{ field.info.Inputfield }}" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">{{ field.info.title }}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="submit" form="{{ field.info.Inputfield }}Form" class="close"
+                                    aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form vanessa-field-settings id="{{ field.info.Inputfield }}Form">
+                                <div class="form-group"><label>{{ __("Label") }}</label>
+                                    <p>{{ __("The label is show in editor of the field") }}</p>
+                                    <input required autocomplete="off" vanessa-label-name class="form-control"
+                                           type="text" name="label" placeholder="{{ __("Label goes here") }}">
+                                </div>
+                                <div class="form-group"><label>{{ __("Name") }}</label>
+                                    <p class="text-light font-italic text-muted">{{ __("The name of the field") }}</p>
+                                    <input required autocomplete="off" vanessa-name-unique class="form-control"
+                                           type="text" name="name" placeholder="{{ __("Name goes here") }}">
+                                    <div class="alert alert-danger" style="display: none;">
+                                        {{ __("Field\'s name is not unique or is named as a safe-value.") }}
+                                    </div>
+                                </div>
+                                <div class="form-group"><label>{{ __("Description") }}</label>
+                                    <p class="text-light font-italic text-muted">{{ __("Description text like this text") }}</p>
+                                    <input autocomplete="off" class="form-control" type="text" name="description"
+                                           placeholder="{{ __("Description goes here") }}">
+                                    <div class="alert alert-danger" style="display: none;">
+                                        {{ __("Field\'s name is not unique or is named as a safe-value.") }}
+                                    </div>
+                                </div>
                                 {{ include(template_from_string(field.html|raw)) }}
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __("Close") }}</button>
+                            <button type="submit" form="{{ field.info.Inputfield }}Form"
+                                    class="btn btn-secondary">{{ __("Close") }}</button>
                         </div>
                     </div>
                 </div>
@@ -105,6 +133,6 @@
         {% endfor %}
     </div>
     <script>
-        var templateFields = {{ template.fields|json_encode|raw }};
+		var templateFields = {{ template.fields|json_encode|raw }};
     </script>
 {% endblock %}

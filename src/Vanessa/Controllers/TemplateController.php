@@ -98,7 +98,8 @@ class TemplateController extends BaseController
 		foreach (new \RecursiveIteratorIterator($it) as $file) {
 			if($file instanceof \SplFileInfo){
 				if($file->isFile() && $file->getExtension() == "yml"){
-					$template = Yaml::parseFile($file->getRealPath());
+					$frontMatter = new FrontMatter();
+					$template = $frontMatter->parse(file_get_contents($file->getRealPath()))->getData();
 					$template['_id'] = base64_encode($file->getRealPath());
 					$templates[] = $template;
 				}

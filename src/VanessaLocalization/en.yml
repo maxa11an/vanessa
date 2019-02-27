@@ -21,6 +21,16 @@ edit.twig:
     - 'Save template'
     - 'Field editor'
     - Add
+    - Label
+    - 'The label is show in editor of the field'
+    - 'Label goes here'
+    - Name
+    - 'The name of the field'
+    - 'Name goes here'
+    - 'Field''s name is not unique or is named as a safe-value.'
+    - Description
+    - 'Description text like this text'
+    - 'Description goes here'
     - Close
 list.twig:
     - 'Add template'
@@ -31,16 +41,11 @@ TextInputfield.php:
     - 'Text Field'
 Inputfield.php:
     - 'Enter default value'
-    - Label
-    - 'The label is show in editor of the field'
-    - 'Label goes here'
-    - Name
-    - 'The name of the field'
-    - 'Name goes here'
 RadiogroupInputfield.php:
     - Radiogroup
 CheckboxInputfield.php:
     - Checkbox
+    - 'Default state of checkbox'
 TextareaInputfield.php:
     - 'Text Area'
 SelectInputfield.php:
@@ -61,3 +66,5 @@ SinglefileInputfield.php:
     - 'Single file'
 FieldgroupInputfield.php:
     - Fieldgroup
+FileInputfield.php:
+    - 'Single file'

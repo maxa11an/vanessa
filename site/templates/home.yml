@@ -6,4 +6,5 @@ fields:
     - { default: '', type: checkbox, label: 'Hero Heading', name: checked }
     - { default: '', type: select, label: 'Hero Heading', name: selector }
     - { default: 'This is default value from home.yml', type: text, label: 'Hero Heading', name: heading }
+    - { type: checkbox, label: 'Light template?', name: light_template, default: 'true' }
 ---
