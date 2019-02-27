@@ -6,4 +6,4 @@ Currently in really early stages.
 
 Run `npm install`.
 
-Run `npm run watch` to feel it, then go to [http://localhost:8080](http://localhost:8080).
+Run `npm run watch` to feel it, then go to [http://localhost:8080/vanessa](http://localhost:8080/vanessa).
