@@ -34,7 +34,7 @@ module.exports = function (grunt) {
 					cwd: 'src/Vanessa/Resources/assets/',
 					dest: 'public_html/vanessa/assets/',
 					src: [
-						'**/*',
+						'**/*.{svg,jpeg,jpg,gif,png}',
 					]
 				},{
 					expand: true,
@@ -66,15 +66,18 @@ module.exports = function (grunt) {
 					event: ['added', 'deleted']
 				}
 			}
-		}
+		},
+		clean: ['public_html/vanessa/assets']
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-exec');
 
-	grunt.registerTask('watch:dev', ['sass', 'cssmin', 'copy', 'watch'])
+	grunt.registerTask('watch:dev', ['clean', 'sass', 'cssmin', 'copy', 'watch'])
 
 };
