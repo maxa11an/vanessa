@@ -38,8 +38,8 @@ class Inputfield implements InputfieldInterface
 		return [
 			'html' => '<div class="center border-left border-right">'.
 				'<div class="form-group">'.
-				'<label></label>'.
-				'<input type="text" name="fields[][default]" placeholder="'.Localization::__("Enter default value").'" autocomplete="off" class="form-control">'.
+				'<label data-ref-name></label>'.
+				'<input data-ref-default type="text" name="fields[][default]" placeholder="'.Localization::__("Enter default value").'" autocomplete="off" class="form-control">'.
 				'</div>'.
 				'</div>',
 			'info' => static::renderAdd()
@@ -51,10 +51,8 @@ class Inputfield implements InputfieldInterface
 		$static = static::renderAdd();
 		return [
 			'html' =>
-				'<form>'.
-					'<div class="form-group"><label>{{ __("Label") }}</label><p>{{ __("The label is show in editor of the field") }}</p><input class="form-control" type="text" name="label" placeholder="{{ __("Label goes here") }}"></div>'.
-					'<div class="form-group"><label>{{ __("Name") }}</label><p class="text-light font-italic text-muted">{{ __("The name of the field") }}</p><input class="form-control" type="text" name="label" placeholder="{{ __("Name goes here") }}"></div>'.
-				'</form>',
+				'<div class="form-group"><label>{{ __("Label") }}</label><p>{{ __("The label is show in editor of the field") }}</p><input class="form-control" type="text" name="label" placeholder="{{ __("Label goes here") }}"></div>'.
+				'<div class="form-group"><label>{{ __("Name") }}</label><p class="text-light font-italic text-muted">{{ __("The name of the field") }}</p><input class="form-control" type="text" name="name" placeholder="{{ __("Name goes here") }}"></div>',
 			'info' => $static
 		];
 	}

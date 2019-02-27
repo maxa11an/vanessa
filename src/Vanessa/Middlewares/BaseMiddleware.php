@@ -23,6 +23,7 @@ class BaseMiddleware
 
 	public function __invoke($req, $res, $next)
 	{
+
 		$this->container['arguments'] = new Arguments($req->getAttribute('routeInfo')[2]);
 		return $next($req, $res);
 	}

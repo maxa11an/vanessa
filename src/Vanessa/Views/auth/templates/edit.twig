@@ -2,7 +2,7 @@
 {% set title = __("Edit template") %}
 {% set leftEditorTitle = title %}
 {% block leftEditor %}
-    <form>
+    <form id="fieldsForm" method="post" action="">
         <div class="h-25 header text-light p-n4">
             <div class="p-4">
                 <div class="form-row">
@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block leftEditorAction %}
-    <a href="{{ path_for("vanessa:template:add") }}" class="btn btn-xs btn-success">{{ __("Save template") }}</a>
+    <button form="fieldsForm" type="submit" class="btn btn-xs btn-success">{{ __("Save template") }}</button>
 {% endblock %}
 
 {% set rightEditorTitle = __("Field editor") %}
@@ -75,6 +75,7 @@
                         <span class="lnr lnr-trash"></span>
                     </div>
                 </div>
+                <textarea class="d-none" name="fields[][_options]"></textarea>
             </div>
 
         {% endfor %}
@@ -91,11 +92,12 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            {{ include(template_from_string(field.html|raw)) }}
+                            <form>
+                                {{ include(template_from_string(field.html|raw)) }}
+                            </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __("Close") }}</button>
                         </div>
                     </div>
                 </div>

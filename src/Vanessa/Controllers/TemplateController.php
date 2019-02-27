@@ -29,6 +29,24 @@ class TemplateController extends BaseController
 	public function editTemplate(){
 
 		$template = Yaml::parseFile(base64_decode($this->arguments()->get('template')));
+		if($this->request()->isPost()){
+			$post = $this->request()->getParsedBody();
+
+			$fields = [];
+			$row = [];
+			foreach($post['fields'] as $fieldGroup){
+				foreach($fieldGroup as $key => $field) {
+					//It's ending here so we reset the row
+					$row[$key] = $key == "_options" ? json_decode($field, true) : $field;
+					if ($key == "_options") {
+						$fields[] = $row;
+						$row = [];
+					}
+				}
+			}
+			var_dump($fields);
+			exit();
+		}
 
 		$fields = InputFieldLoad::all();
 

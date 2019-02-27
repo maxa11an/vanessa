@@ -4,7 +4,6 @@ import jQuery from 'jquery';
 export class Inputfields {
 	constructor(){
 		this.fields = templateFields;
-
 	}
 
 	renderLoaded(){
@@ -19,17 +18,27 @@ export class Inputfields {
 		return new Promise((resolve) => {
 			const TYPE = `${Vanessa.capitalize(item.type)}Inputfield`;
 			const element = jQuery(`#InputfieldTypes > [data-type="${TYPE}"]`).clone(true, true);
-			jQuery(element).find('label').text(item.name);
-			jQuery(element).find('input').val(item.default);
+			jQuery(element).find('textarea').val(JSON.stringify(item)); //Not most nice way to store data, altho it works
 			jQuery(element).appendTo("#Inputfields");
+			renderItemFromOptions(element);
 			resolve();
 		})
 
 	}
-
-
 }
 
+function renderItemFromOptions(currentElement){
+	const options = JSON.parse(jQuery(currentElement).find('textarea').val());
+	Object.keys(options).forEach((option) => {
+		const value = options[option];
+		const source = currentElement.find(`[data-ref-${option}]`);
+		if(source.is('input') || source.is('select')){
+			source.val(value)
+		}else{
+			source.text(value)
+		}
+	})
+}
 
 function registerEvents(){
 
@@ -42,6 +51,8 @@ function registerEvents(){
 			moveItem(element, `+`);
 		}else if(element.hasClass('item-action-remove')){
 			deleteItem(element);
+		}else if(element.hasClass('item-action-settings')){
+			editItem(element);
 		}
 		//return moveRow($(this), `-` );
 	});
@@ -81,6 +92,26 @@ function deleteItem(item){
 		currentElement.remove();
 		checkFirstAndLast();
 	}, 300);
+}
+
+function editItem(item){
+	const currentElement = item.parents('div.item');
+	const type = currentElement.data('type');
+	const optionsHolder = currentElement.find('textarea');
+	const options = JSON.parse(optionsHolder.val());
+	jQuery(`.modal[data-type="${type}"]`).modal('show').one("hidden.bs.modal", (e) => {
+		console.log(jQuery(e.currentTarget).find('form').serializeArray());
+		let newOptions = {};
+		jQuery(e.currentTarget).find('form').serializeArray().forEach((m) => {
+			newOptions[m.name] = m.value;
+		});
+		optionsHolder.val(JSON.stringify(Object.assign({}, options, newOptions )));
+		renderItemFromOptions(currentElement);
+	});
+	const form = jQuery(`.modal[data-type="${type}"]`).find('form');
+	Object.keys(options).forEach((optionName) => {
+		form.find(`[name="${optionName}"]`).val(options[optionName]);
+	});
 }
 
 function addNewItem(type){
