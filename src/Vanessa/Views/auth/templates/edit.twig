@@ -12,14 +12,11 @@
                                name="name"/>
                     </div>
                     <div class="col d-flex align-items-center justify-content-end">
-                        <div class="switch-group">
-                            <label class="switch-control switch-control-sm">
-                                <input data-ref-default type="checkbox"
-                                       value="true" {{ template.has_body ? 'checked="checked"' : '' }}
-                                       name="fields[][has_body]" class="primary">
-                                <span class="slider"></span>
+                        <div class="switch-group primary round">
+                            <label>
+                                <input type="checkbox" name="fields[][has_body]" {{ template.has_body ? 'checked="checked"' : '' }} />
+                                <span></span> {{ __("Hide body") }}
                             </label>
-                            <label>{{ __("Hide body") }}</label>
                         </div>
                     </div>
                 </div>
@@ -44,7 +41,7 @@
                             <h6 class="mb-0">{{ field.title }}</h6>
                         </div>
                         <div class="d-flex align-items-center my-auto py-3 inputfields-icon mx-auto" >
-                            <img class="d-block mx-auto my-2" src="{{ asset(field.Inputfield ~ '.svg') }}"/>
+                            <img class="d-block mx-auto my-2" src="{{ asset('icons/'~field.Inputfield ~ '.svg') }}"/>
                         </div>
                         <div class="mt-auto w-100">
                             <a href="#" data-action="add" data-type="{{ field.Inputfield }}"

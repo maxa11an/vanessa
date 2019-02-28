@@ -11,100 +11,126 @@ $switch-height-lg: $switch-base + 6;
 .switch-group {
   display: flex;
   align-items: center;
-  padding: $input-padding-y 0;
+  height: #{$input-line-height}rem;
+  &.round > label > input + * {
+	border-radius: $input-line-height;
+	&::before {
+	  border-radius: 50%;
+	}
+  }
 
-  .switch-control {
+  & > label {
 	position: relative;
 	display: inline-block;
-	width: #{$switch-width}px;
-	height: #{$switch-height}px;
+	width: auto;
+	height: #{$input-line-height * 0.5}rem;
+	@include font-size($input-font-size, true);
+	font-weight: $font-weight-normal !important;
+	line-height: #{$input-line-height * 0.5}rem;
+	color: $input-color;
+	text-transform: none !important;
+	cursor:pointer;
 
-	.slider {
-	  position: absolute;
-	  cursor: pointer;
-	  top: 0;
-	  left: 0;
-	  right: 0;
-	  bottom: 0;
-	  background-color: $gray-400;
-	  -webkit-transition: .4s;
-	  transition: .4s;
-
-	  &.round {
-		border-radius: 34px;
+	& > input {
+	  opacity: 0;
+	  width: 0px;
+	  margin-right: #{$input-line-height * 2.75}rem;
+	  &:checked + *:before {
+		-webkit-transform: translateX(26px);
+		-ms-transform: translateX(26px);
+		transform: translateX(26px);
 	  }
-
-	  &.round:before {
-		border-radius: 50%;
+	  &:active + *:before{
+		transform: scale(1.4, 1.4);
+		box-shadow: $box-shadow-center;
 	  }
-	}
-
-	.slider:before {
-	  position: absolute;
-	  content: "";
-	  height: #{$switch-height - 8}px;
-	  width: #{$switch-width / 2 - 8}px;
-	  left: 4px;
-	  bottom: 4px;
-	  background-color: white;
-	  -webkit-transition: .4s;
-	  transition: .4s;
-	}
-
-	input {
-	  display: none;
-	}
-	input.default:checked + .slider {
-	  background-color: $gray-900;
-	}
-	input.primary:checked + .slider {
-	  background-color: $blue;
-	}
-	input.success:checked + .slider {
-	  background-color: $green;
-	}
-	input.info:checked + .slider {
-	  background-color: $cyan;
-	}
-	input.warning:checked + .slider {
-	  background-color: $yellow;
-	}
-	input.danger:checked + .slider {
-	  background-color: $red;
-	}
-
-	input:focus + .slider {
-	  box-shadow: 0 0 1px #2196F3;
-	}
-
-	input:checked + .slider:before {
-	  -webkit-transform: translateX(#{$switch-width / 2}px);
-	  -ms-transform: translateX(#{$switch-width / 2}px);
-	  transform: translateX(#{$switch-width / 2}px);
-	}
-
-	&.switch-control-sm {
-	  height: #{$switch-height-sm}px;
-
-	  .slider::before {
-		height: #{$switch-height-sm - 8}px;
+	  &:focus + * {
+		box-shadow: $input-focus-box-shadow;
 	  }
-	}
-
-	&.switch-control-lg {
-	  height: #{$switch-height-lg}px;
-
-	  .slider::before {
-		height: #{$switch-height-lg - 8}px;
+	  & + * {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $gray-400;
+		-webkit-transition: 0.4s;
+		transition: 0.4s;
+		width: #{$input-line-height * 2.5}rem;
+		&::before {
+		  position: absolute;
+		  content: "";
+		  height: #{$input-line-height}rem;
+		  width: #{$input-line-height}rem;
+		  left: #{$input-line-height * 0.25}rem;
+		  top: -#{$input-line-height * 0.25}rem;
+		  background-color: $white;
+		  -webkit-transition: 0.4s;
+		  transition: 0.4s;
+		}
 	  }
 	}
   }
-  label:not(.switch-control) {
-	@include font-size($input-font-size);
-	font-weight: $input-font-weight;
-	line-height: $input-line-height;
-	color: $input-color;
-	text-transform: none !important;
-	margin-left: 1rem;
+  &.default > label > input:checked + * {
+	background-color: $secondary;
+  }
+  &.primary > label > input:checked + * {
+	background-color: $primary;
+  }
+  &.success > label > input:checked + * {
+	background-color: $success;
+  }
+  &.info > label > input:checked + * {
+	background-color: $info;
+  }
+  &.warning > label > input:checked + * {
+	background-color: $warning;
+  }
+  &.danger > label > input:checked + * {
+	background-color: $danger;
+  }
+  &.switch-group-sm {
+	&.round > label > input + * {
+	  border-radius: 24px;
+	}
+	& > label {
+	  height: 24px;
+	  line-height: 24px;
+	  & > input {
+		margin-right: 50px;
+		& + * {
+		  width: 50px;
+		  &::before {
+			height: 16px;
+			width: 16px;
+		  }
+		}
+	  }
+	}
+  }
+  &.switch-group-lg {
+	&.round > label > input + * {
+	  border-radius: 40px;
+	}
+	& > label {
+	  height: 40px;
+	  line-height: 40px;
+	  & > input {
+		margin-right: 70px;
+		&:checked + *:before {
+		  -webkit-transform: translateX(30px);
+		  -ms-transform: translateX(30px);
+		  transform: translateX(30px);
+		}
+		& + * {
+		  width: 70px;
+		  &::before {
+			height: 32px;
+			width: 32px;
+		  }
+		}
+	  }
+	}
   }
 }

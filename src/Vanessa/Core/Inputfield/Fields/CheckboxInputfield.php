@@ -37,12 +37,11 @@ class CheckboxInputfield extends Inputfield implements InputfieldInterface
 		$p['html'] = '<div class="center border-left border-right">'.
 			'<div class="form-group">'.
 			'<label data-ref-name></label>'.
-			'<div class="switch-group">'.
-			'<label class="switch-control switch-control-sm">'.
-			'<input data-ref-default type="checkbox" value="true" name="fields[][default]" class="success">'.
-			'<span class="slider"></span>'.
+			'<div class="switch-group success round">'.
+			'<label>'.
+			'<input data-ref-default type="checkbox" name="fields[][default]" />'.
+			'<span></span>'.Localization::__("Default state of checkbox").
 			'</label>'.
-			'<label>'.Localization::__("Default state of checkbox").'</label>'.
 			'</div>'.
 			'</div>'.
 			'</div>';

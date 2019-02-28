@@ -8,7 +8,7 @@ Run `npm install`.
 
 Depending on your local environment there is two ways to start vanessa.
 *For Windows method 2 is recommended*
-###method 1 (Unix / Linux)
+#### method 1 (Unix / Linux)
 `run npm serve`
 
 This will start a local built in PHP server and watching for files
@@ -16,7 +16,8 @@ This will start a local built in PHP server and watching for files
 When running, the admin-panel can be found [http://localhost:8080/vanessa](http://localhost:8080/vanessa)
 
 
-###method 2 (Windows / Deploy)
+#### method 2 (Windows / Deploy)
+
 `run npm watch` 
 
 Be sure that your local apache is running.
