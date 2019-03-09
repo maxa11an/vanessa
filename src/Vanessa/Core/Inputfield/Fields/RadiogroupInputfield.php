@@ -12,7 +12,7 @@ use Vanessa\Core\Inputfield\Inputfield;
 use Vanessa\Core\Inputfield\InputfieldInterface;
 use Vanessa\Core\Localization;
 
-class RadiogroupInputfield extends Inputfield implements InputfieldInterface
+class RadiogroupInputfield extends SelectInputfield implements InputfieldInterface
 {
 	public static function renderAdd()
 	{

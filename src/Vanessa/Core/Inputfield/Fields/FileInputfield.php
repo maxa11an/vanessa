@@ -25,6 +25,34 @@ class FileInputfield extends Inputfield implements InputfieldInterface
 		return array_merge($p, $t);
 	}
 
+	public static function renderListItem()
+	{
+		return [
+			'html' => '<div class="center border-left border-right">'.
+				'<div class="form-group">'.
+				'<label data-ref-name></label>'.
+				'<p data-ref-filetypes></p>'.
+				'</div>'.
+				'</div>',
+			'info' => static::renderAdd(),
+			'default' => ['type' => static::renderAdd()['name']]
+		];
+	}
+
+	public static function renderOptions()
+	{
+		$static = static::renderAdd();
+		return [
+			'html' =>
+				'<div class="form-group">' .
+				'<label>{{ __("Accepted file types") }}</label>' .
+				'<input class="form-control" type="text" value="" placeholder="{{ __("Seperate each filetype with space") }}" name="filetypes">' .
+				'</div>'
+			,
+			'info' => $static
+		];
+	}
+
 
 
 	public function renderField()

@@ -49,7 +49,7 @@
 	font-weight: $font-weight-light;
 	font-size: $small-font-size;
   }
-  .form-control[type='text']{
+  .form-control[type='text'], .form-control[type='number']{
 	border-left: none;
 	border-right: none;
 	border-top: none;

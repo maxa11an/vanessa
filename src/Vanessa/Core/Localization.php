@@ -26,7 +26,7 @@ class Localization extends YamlSession
 		$language = "en";
 
 		if($language === "en"){
-			return $key;
+			return stripslashes($key);
 		}
 
 		if(!@$_SESSION[self::SESSION_NAME][$file]){

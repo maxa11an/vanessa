@@ -47,4 +47,9 @@ class CheckboxInputfield extends Inputfield implements InputfieldInterface
 			'</div>';
 		return $p;
 	}
+
+	public static function validateInput($input, array $field = [])
+	{
+		return boolval($input);
+	}
 }

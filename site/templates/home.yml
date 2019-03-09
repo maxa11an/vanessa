@@ -3,8 +3,13 @@ name: home
 has_body: false
 is_blockable: false
 fields:
-    - { default: '', type: checkbox, label: 'Hero Heading', name: checked }
-    - { default: '', type: select, label: 'Hero Heading', name: selector }
-    - { default: 'This is default value from home.yml', type: text, label: 'Hero Heading', name: heading }
-    - { type: checkbox, label: 'Light template?', name: light_template, default: 'true' }
+    - { default: 'This is default value from home.yml', type: text, label: 'Text field', name: textfield, description: '' }
+    - { default: '', type: textarea, label: textarea, name: textarea, description: '', config: { options: { values: ['1', '2'], labels: [Test, Snyggt] } }, required: 'true' }
+    - { default: '1', type: select, label: 'Hero Heading', name: selector, description: '', config: { options: { values: ['1', '2'], labels: [Test, Snyggt] } } }
+    - { type: numbers, label: Number, name: number, default: '', description: '', config: { min: '1', deep: { af: true, def: '' }, te: ['3', '4'], max: '' } }
+    - { type: checkbox, label: Checkbox, name: checkbox, description: '', config: { min: '1', deep: { af: true, def: '' }, te: ['3', '4'] }, default: true }
+    - { type: radiogroup, label: 'Radio Group', name: radio_group, description: '', default: '', config: { options: { values: ['1', '2'], labels: [Fint, Vacker] } } }
+    - { type: date, label: 'Date picker', name: date_picker, description: '', default: '' }
+    - { type: file, label: 'File Uploader', name: file_uploader, description: '', default: '', filetypes: 'jpg gif png jpeg' }
+    - { type: fieldgroup, label: 'Field group', name: field_group, description: '', default: '' }
 ---

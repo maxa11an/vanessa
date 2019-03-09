@@ -14,7 +14,8 @@
                     <div class="col d-flex align-items-center justify-content-end">
                         <div class="switch-group primary round">
                             <label>
-                                <input type="checkbox" name="fields[][has_body]" {{ template.has_body ? 'checked="checked"' : '' }} />
+                                <input type="checkbox"
+                                       name="fields[][_has_body]" {{ template.has_body ? 'checked="checked"' : '' }} />
                                 <span></span> {{ __("Hide body") }}
                             </label>
                         </div>
@@ -40,7 +41,7 @@
                         <div class="mb-auto w-100">
                             <h6 class="mb-0">{{ field.title }}</h6>
                         </div>
-                        <div class="d-flex align-items-center my-auto py-3 inputfields-icon mx-auto" >
+                        <div class="d-flex align-items-center my-auto py-3 inputfields-icon mx-auto">
                             <img class="d-block mx-auto my-2" src="{{ asset('icons/'~field.Inputfield ~ '.svg') }}"/>
                         </div>
                         <div class="mt-auto w-100">
@@ -56,28 +57,37 @@
 {% block footerContent %}
     <div id="InputfieldTypes" class="d-none">
         {% for field in fieldList %}
-            <div class="item d-flex p-4 my-2" data-type="{{ field.info.Inputfield }}">
-                <div class="d-flex flex-column h-75 align-self-center">
-                    <div class="mb-auto clickable item-action-up">
-                        <span class="lnr lnr-chevron-up"></span>
+
+            <div class="item d-flex p-4 my-2"
+                 style="background-image: url({{ asset('icons/'~field.info.Inputfield ~ '.svg') }})"
+                 data-type="{{ field.info.Inputfield }}">
+                {% if field.outerHtml != "" %}
+                    {{ include(template_from_string(field.outerHtml|raw)) }}
+                {% else %}
+                    <div class="d-flex flex-column h-75 align-self-center">
+                        <div class="mb-auto clickable item-action-up">
+                            <span class="lnr lnr-chevron-up"></span>
+                        </div>
+                        <div class="mt-auto clickable item-action-down">
+                            <span class="lnr lnr-chevron-down"></span>
+                        </div>
                     </div>
-                    <div class="mt-auto clickable item-action-down">
-                        <span class="lnr lnr-chevron-down"></span>
+                    <div class="flex-grow-1 px-3 d-flex align-items-center ">
+                        {{ include(template_from_string(field.html|raw)) }}
                     </div>
-                </div>
-                <div class="flex-grow-1 px-3 d-flex align-items-center ">
-                    {{ field.html|raw }}
-                </div>
-                <div class="d-flex flex-column h-75 align-self-center">
-                    <div class="mb-auto clickable item-action-settings">
-                        <span class="lnr lnr-cog"></span>
+                    <div class="d-flex flex-column h-75 align-self-center">
+                        <div class="mb-auto clickable item-action-settings">
+                            <span class="lnr lnr-cog"></span>
+                        </div>
+                        <div class="mt-auto clickable item-action-remove">
+                            <span class="lnr lnr-trash"></span>
+                        </div>
                     </div>
-                    <div class="mt-auto clickable item-action-remove">
-                        <span class="lnr lnr-trash"></span>
-                    </div>
-                </div>
-                <textarea class="d-none" name="fields[][_options]">{{ field.default|json_encode }}</textarea>
+                    <textarea class="d-none" name="fields[][_options]">{{ field.default|json_encode }}</textarea>
+                {% endif %}
+
             </div>
+
 
         {% endfor %}
     </div>
@@ -107,6 +117,14 @@
                                            type="text" name="name" placeholder="{{ __("Name goes here") }}">
                                     <div class="alert alert-danger" style="display: none;">
                                         {{ __("Field\'s name is not unique or is named as a safe-value.") }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>{{ __("Required") }}</label>
+                                    <p class="text-light font-italic text-muted">{{ __("If selected a default value is recommended to set") }}</p>
+                                    <div class="form-check">
+                                        <input value="true" class="form-check-input" type="checkbox" name="required">
+                                        <label class="form-check-label">{{ __("Mark required") }}</label>
                                     </div>
                                 </div>
                                 <div class="form-group"><label>{{ __("Description") }}</label>

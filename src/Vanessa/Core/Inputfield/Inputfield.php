@@ -58,6 +58,11 @@ class Inputfield implements InputfieldInterface
 		];
 	}
 
+	public static function validateInput($input, array $field = [])
+	{
+		return $input;
+	}
+
 	public function renderField()
 	{
 		// TODO: Implement renderField() method.

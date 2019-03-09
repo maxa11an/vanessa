@@ -40,7 +40,6 @@ class TemplateController extends BaseController
 			$row = [];
 			foreach($post['fields'] as $fieldGroup){
 				foreach($fieldGroup as $key => $field) {
-					//It's ending here so we reset the row
 					$row[$key] = $key == "_options" ? json_decode($field, true) : $field;
 					if ($key == "_options") {
 						$fields[] = $row;
@@ -49,13 +48,23 @@ class TemplateController extends BaseController
 				}
 			}
 
+			//Moving it options step up
 			foreach($fields as $k => $field) {
 				$options = $field['_options'];
 				unset($field['_options']);
 				$fields[$k] = array_replace($options, $field);
 
 			}
+
+			//Execute validateInput
+			foreach($fields as $k => $field){
+				$klass = "\\Vanessa\\Core\\Inputfield\\Fields\\".ucfirst($field['type']).'InputField';
+				$fields[$k]['default'] = $klass::validateInput($field['default'], $field);
+			}
+
 			$post['fields'] = $fields;
+
+			
 
 
 			$template->setData( array_replace_recursive($old, $post));

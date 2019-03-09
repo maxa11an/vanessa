@@ -16,5 +16,6 @@ interface InputfieldInterface
 	public static function renderOptions();
 	public static function renderAdd();
 	public static function renderListItem();
+	public static function validateInput($input, array $field = []);
 
 }

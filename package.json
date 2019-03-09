@@ -25,6 +25,7 @@
     "bootstrap": "^4.3.1",
     "bootstrap4-notify": "^4.0.3",
     "jquery": "^3.3.1",
+    "jquery-serializejson": "^2.9.0",
     "linearicons": "^1.0.1",
     "popper.js": "^1.14.7"
   },

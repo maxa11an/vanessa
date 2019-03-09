@@ -1,6 +1,11 @@
 .btn-xs {
   @include button-size($btn-padding-y-sm / 2, $btn-padding-x-sm / 2, $btn-font-size-sm - 0.175, $btn-line-height-sm, $btn-border-radius-sm);
 }
+label {
+  .btn{
+	padding: 0 $btn-padding-x-sm / 2 !important;
+  }
+}
 
 .modal-dialog{
   box-shadow: $box-shadow-lg;
